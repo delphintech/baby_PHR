@@ -4,4 +4,4 @@ WORKDIR /usr/src/app
 
 EXPOSE	5173
 
-CMD ["npm", "run", "dev"]
+CMD ["sh", "-c", "npm install && npm run dev"]
