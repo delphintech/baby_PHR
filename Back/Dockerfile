@@ -1,5 +1,6 @@
 FROM	node:24-alpine3.20
 
+COPY 	../.env .
 WORKDIR /usr/src/app
 
 EXPOSE	3000
