@@ -54,23 +54,3 @@ services:
 networks:
   app:
     driver: bridge
-
-# volumes:
-#   back:
-#     driver: local
-#     driver_opts:
-#       type: 'none'
-#       o: 'bind'
-#       device: '${PWD}/Back'
-#   front:
-#     driver: local
-#     driver_opts:
-#       type: 'none'
-#       o: 'bind'
-#       device: '${PWD}/Front'
-#   db:
-#     driver: local
-#     driver_opts:
-#       type: 'none'
-#       o: 'bind'
-#       device: '${PWD}/Data'
