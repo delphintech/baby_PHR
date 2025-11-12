@@ -22,19 +22,29 @@ baby_PHR/
 └── .env
 ```
 
-## Quick Start
+## ❗❗ Getting started ❗❗
+- **Update .env :** Credentials are to be updated in every .env
+- **⚠️ To know:** Volume Data (database) is in .gitignore
+
+## Usage
 ```bash
 # Launch server
 make
 
+# Access app
+https://localhost:8443
+
 # Launch terminal of one of the containers
 make term
 
+# See logs of one of the containers
+make log
+
+# List containers
+make state
+
 # Stop the server
 make stop
-
-# Access app
-https://localhost:8443
 ```
 `
 ## API Documentation

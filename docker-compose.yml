@@ -46,7 +46,7 @@ services:
     ports: 
       - "5432:5432"
     volumes:
-      - ./Data:/var/lib/postgresql
+      - ./Data:/var/lib/postgresql/data
     networks:
       - app
 

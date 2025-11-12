@@ -5,7 +5,7 @@ require('dotenv').config()
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var errorHandler = require('./middleware/errorHandler')
+// var errorHandler = require('./middleware/errorHandler')
 
 var app = express();
 
@@ -17,6 +17,6 @@ app.use(cookieParser());
 app.use('/api/', indexRouter);
 app.use('/api/users', usersRouter);
 
-app.use(errorHandler);
+// app.use(errorHandler);
 
 module.exports = app;
