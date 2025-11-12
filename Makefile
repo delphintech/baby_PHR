@@ -21,7 +21,7 @@ log:
 	docker compose logs $$CONT --tail 50
 
 clean: stop
-	docker compose -f ./docker-compose.yml rm -f -v
+	docker compose -f ./docker-compose.yml rm -f
 
 fclean: clean
 	docker compose -f ./docker-compose.yml down -v

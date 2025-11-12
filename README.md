@@ -58,6 +58,5 @@ See `Back/API.md`
 ```bash
 cd Back
 npm test              # run tests
-npm run test:watch   # watch mode
-npm run test:coverage # coverage report
 ```
+[`Doc for test module`](https://jestjs.io/docs/getting-started)
