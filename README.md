@@ -1,4 +1,4 @@
-# Baby PHR - Personal Health Record Web App
+# Full Stack Web app template
 
 ## Overview
 Full-stack web application built with Express (backend), React + Vite (frontend), PostgreSQL (database), and Nginx (reverse proxy).
