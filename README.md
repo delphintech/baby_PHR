@@ -25,6 +25,10 @@ baby_PHR/
 ## ❗❗ Getting started ❗❗
 - **Update .env :** Credentials are to be updated in every .env
 - **⚠️ To know:** Volume Data (database) is in .gitignore
+- **Add migration Database:**
+	`npm run migrate create migration-name # Create new migration`
+	`npm run migrate up   # run migrations`
+	[`Doc for migration module`](https://salsita.github.io/node-pg-migrate/)
 
 ## Usage
 ```bash

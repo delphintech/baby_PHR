@@ -1,11 +1,11 @@
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-require('dotenv').config()
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
+import dotenv from 'dotenv';
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-// var errorHandler = require('./middleware/errorHandler')
+import indexRouter from './routes/index.js';
+import usersRouter from './routes/users.js';
+// import errorHandler from './middleware/errorHandler';
 
 var app = express();
 
@@ -19,4 +19,4 @@ app.use('/api/users', usersRouter);
 
 // app.use(errorHandler);
 
-module.exports = app;
+export default app;
