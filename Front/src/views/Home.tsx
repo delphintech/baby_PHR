@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import type { Baby } from '../types/Baby';
 import BabyCard from '../components/BabyCard';
+import NewBabyForm from '../components/NewBabyFrom';
 
 function Home() {
 	const [babies, setBabies] = useState<Baby[] | null>(null)
+	const [openForm, setOpenForm] = useState(false);
 
 	useEffect(() => {
 
@@ -37,8 +39,9 @@ function Home() {
 			</section>
 			<section className="p-4 bg-white shadow flex justify-between items-center rounded-2xl p-6 mt-4">
 				<h1 className="text-2xl font-bold text-blue-700">My Babies</h1>
-				<button className="bg-blue-600 text-white px-4 py-2 rounded-lg">+ Add Baby</button>
+				<button className="bg-blue-600 text-white px-4 py-2 rounded-lg" onClick={() => setOpenForm(!openForm)}>+ Add Baby</button>
 			</section>
+			< NewBabyForm isOpen={openForm} setOpenForm={setOpenForm} />
 			{babyList}
 		</main>
 	);
