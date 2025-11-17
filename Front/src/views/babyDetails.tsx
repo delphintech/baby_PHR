@@ -47,7 +47,7 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 			<p className="text-gray-800"><strong>Age:</strong> 18 months</p>
             </div>
 
-			<BabyRecords baby={baby} />
+			<BabyRecords baby={baby}/>
 
             <div className="bg-white rounded-2xl shadow p-4 mb-6">
 				<h2 className="text-lg font-semibold mb-2 text-blue-700">Growth Summary</h2>

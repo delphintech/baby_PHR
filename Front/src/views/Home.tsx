@@ -5,7 +5,6 @@ import NewBabyForm from '../components/NewBabyFrom';
 
 function Home() {
 	const [babies, setBabies] = useState<Baby[] | null>(null)
-	// const [currentBaby, setCurrentBaby] = useState<Baby[] | null>(null)
 	const [openForm, setOpenForm] = useState(false);
 
 	useEffect(() => {

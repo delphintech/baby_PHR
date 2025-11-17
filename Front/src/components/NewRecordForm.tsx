@@ -1,25 +1,25 @@
 import { useState } from 'react';
+import type { Baby } from '../types/Baby';
 
-export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOpen: boolean) => void}) {
+export default function NewRecordForm (props: { baby: Baby | null, isOpen: boolean, setOpenForm: (isOpen: boolean) => void }) {
 	const [formData, setFormData] = useState({
-		name: "",
-		gender: "",
-		birthdate: ""
+		weight: 0,
+		height: 0,
+		notes: "",
+		date: new Date()
 	})
 
-	
 	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-		const {name, value, checked, type} = event.target;
-		
+		const { name, value } = event.target;
 		setFormData(prevData => ({
 			...prevData,
-			[name]: (type == "radio" ? (checked && value) : value),
+			[name]:  value,
 		}))
 	}
 
 	async function handleSubmit(event: React.FormEvent) {
 		event.preventDefault();
-
+		// TODO: handle function and API endpoint
 		const res = await fetch("https://localhost:8443/api/babies", {
 			method: "POST",
 			headers: {
@@ -36,6 +36,7 @@ export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOp
 		}
 	}
 
+	// TODO
 	return (
 		<>
 		{props.isOpen && 
