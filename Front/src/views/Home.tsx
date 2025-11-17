@@ -11,7 +11,7 @@ function Home() {
 
 	  fetch('https://localhost:8443/api/babies')
 		.then(res => res.json())
-		.then(data => setBabies(data.data)) // adjust if your API shape is different
+		.then(data => setBabies(data.data))
 		.catch(err => console.error(err));
 	}, []);
 
@@ -39,7 +39,7 @@ function Home() {
 			</section>
 			<section className="p-4 bg-white shadow flex justify-between items-center rounded-2xl p-6 mt-4">
 				<h1 className="text-2xl font-bold text-blue-700">My Babies</h1>
-				<button className="bg-blue-600 text-white px-4 py-2 rounded-lg" onClick={() => setOpenForm(!openForm)}>+ Add Baby</button>
+				<button className="bg-blue-600 hover:bg-blue-400 text-white px-4 py-2 rounded-lg" onClick={() => setOpenForm(!openForm)}>+ Add Baby</button>
 			</section>
 			< NewBabyForm isOpen={openForm} setOpenForm={setOpenForm} />
 			{babyList}
