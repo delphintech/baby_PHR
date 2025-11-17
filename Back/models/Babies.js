@@ -30,7 +30,7 @@ const Baby = {
 			throw new Error("Gender must be 'M', 'F' or 'O'")
 		}
 		try {
-			const result = await pool.query('INSERT INTO babies (name, birthdate, gender) VALUES $1, $2, $3 RETURNING *', [name, birthdate, gender]);
+			const result = await pool.query('INSERT INTO babies (name, birthdate, gender) VALUES ($1, $2, $3) RETURNING *', [name, birthdate, gender]);
 			return result.rows[0];
 		} catch (error) {
 			throw error;

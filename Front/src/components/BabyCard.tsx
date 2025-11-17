@@ -15,6 +15,13 @@ export default function BabyCard(props: { baby: Baby}) {
 	const today = new Date();
 	const birthdate = new Date(props.baby.birthdate);
 	let age = (today.getFullYear() - birthdate.getFullYear()) * 12 + today.getMonth() - birthdate.getMonth();
+	let age_text;
+	if (age > 0) {
+		age_text = `${age} months`;
+	} else {
+		age = today.getDate() - birthdate.getDate();
+		age_text = `${age} days`;
+	}
 
 
 	return (
@@ -24,7 +31,7 @@ export default function BabyCard(props: { baby: Baby}) {
                 <span className="text-2xl mr-2">{genderIcon}</span>
                 <span className="text-lg font-bold text-blue-700">{props.baby.name}</span>
             </div>
-            <span className="text-sm text-gray-500">{`Age: ${age} months`}</span>
+            <span className="text-sm text-gray-500">{age_text}</span>
         </Link>
 	)
 }
