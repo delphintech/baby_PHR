@@ -48,7 +48,7 @@ export const up = (pgm) => {
 			references: '"babies"(id)',
 			onDelete: 'CASCADE',
 		},
-		vaccine_name: { type: 'varchar(255)', notNull: true },
+		name: { type: 'varchar(255)', notNull: true },
 		due_date: { type: 'date' },
 		completed_at: { type: 'date' },
 		completed: { type: 'boolean', default: false  },

@@ -1,4 +1,4 @@
-import Baby from '../models/Babies.js';
+import Baby from '../models/Baby.js';
 
 const babyController = {
 	getAllBaby: async (req, res) => {

@@ -63,8 +63,8 @@ const seedDatabase = async () => {
 				const recordDate = new Date(birthdate);
 				recordDate.setMonth(recordDate.getMonth() + i); // Monthly records
 
-				const weight = faker.number.float({ min: 3.0, max: 12.0, precision: 0.1 }); // kg
-				const height = faker.number.float({ min: 48, max: 75, precision: 0.1 }); // cm
+				const weight = faker.number.float({ min: 3.0, max: 12.0, precision: 0.1 }).toFixed(1); // kg
+				const height = faker.number.float({ min: 48, max: 75, precision: 0.1 }).toFixed(1); // cm
 				const notes = faker.helpers.arrayElement([
 				'Healthy checkup',
 				'Good weight gain',
@@ -134,7 +134,7 @@ const seedDatabase = async () => {
 				}
 
                 await pool.query(
-                    `INSERT INTO vaccinations (baby_id, vaccine_name, due_date, completed_at, completed) 
+                    `INSERT INTO vaccinations (baby_id, name, due_date, completed_at, completed) 
                     VALUES ($1, $2, $3, $4, $5)`,
                     [
                         babyId,

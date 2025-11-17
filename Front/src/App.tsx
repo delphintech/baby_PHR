@@ -5,7 +5,6 @@ import Home from './views/Home.tsx';
 import BabyDetails from './views/babyDetails.tsx';
 import Vaccination from './views/Vaccination.tsx';
 import './index.css'
-import './App.css'
 
 function App() {
   const [baby, setBaby] = useState<Baby | null>(null);

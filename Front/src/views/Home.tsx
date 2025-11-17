@@ -5,14 +5,14 @@ import NewBabyForm from '../components/NewBabyFrom';
 
 function Home() {
 	const [babies, setBabies] = useState<Baby[] | null>(null)
+	// const [currentBaby, setCurrentBaby] = useState<Baby[] | null>(null)
 	const [openForm, setOpenForm] = useState(false);
 
 	useEffect(() => {
-
-	  fetch('https://localhost:8443/api/babies')
-		.then(res => res.json())
-		.then(data => setBabies(data.data))
-		.catch(err => console.error(err));
+		fetch('https://localhost:8443/api/babies')
+			.then(res => res.json())
+			.then(data => setBabies(data.data))
+			.catch(err => console.error(err));
 	}, []);
 
 	let babyList;

@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import type { Baby } from '../types/Baby'
 import { useParams, useNavigate } from 'react-router-dom';
+import BabyRecords from '../components/BabyRecords';
 
 function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
-	const [baby, setBaby] = useState<Baby | null>(null)
+	const [baby, setBaby] = useState<Baby | null>(null);
 
-	const navigate = useNavigate()
+	const navigate = useNavigate();
 
-	let params = useParams()
+	let params = useParams();
+
 	useEffect(() => {
 	  fetch(`https://localhost:8443/api/babies/${params.id}`)
 		.then(res => res.json())
@@ -45,32 +47,7 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 			<p className="text-gray-800"><strong>Age:</strong> 18 months</p>
             </div>
 
-            <div className="bg-white rounded-2xl shadow p-4 mb-6">
-            <div className="flex justify-between items-center mb-3">
-				<h2 className="text-lg font-semibold text-blue-700">Growth Records</h2>
-                <button className="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-400">+ Add Record</button>
-            </div>
-            <table className="w-full text-sm">
-                <thead className="text-left text-gray-600">
-                <tr>
-                    <th className="pb-2">Date</th>
-                    <th>Weight (kg)</th>
-                    <th>Height (cm)</th>
-                    <th>Notes</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr className="border-t text-gray-800">
-                    <td className="py-2">2025-10-01</td>
-                    <td>10.5</td>
-                    <td>78</td>
-                    <td>Healthy checkup</td>
-                    <td><button className="text-blue-500">✎</button></td>
-                </tr>
-                </tbody>
-            </table>
-            </div>
+			<BabyRecords baby={baby} />
 
             <div className="bg-white rounded-2xl shadow p-4 mb-6">
 				<h2 className="text-lg font-semibold mb-2 text-blue-700">Growth Summary</h2>

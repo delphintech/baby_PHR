@@ -23,7 +23,6 @@ export default function BabyCard(props: { baby: Baby}) {
 		age_text = `${age} days`;
 	}
 
-
 	return (
         <Link className="bg-white border border-blue-50 rounded-xl shadow-md p-6 mb-4 transition-transform hover:scale-105 hover:shadow-lg flex items-center justify-between"
 			to={`/baby/${props.baby.id}`}>
