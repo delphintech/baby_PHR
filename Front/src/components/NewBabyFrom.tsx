@@ -7,7 +7,6 @@ export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOp
 		birthdate: ""
 	})
 
-	
 	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
 		const {name, value, checked, type} = event.target;
 		
@@ -26,13 +25,13 @@ export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOp
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(formData)
-		}).then(res => res.json())
+		}).then(res => res.json());
 
 		if (res.status == "ok") {
-			alert(`${res.data.name} has been created`)
-			props.setOpenForm(false)
+			alert(`${res.data.name} has been created`);
+			props.setOpenForm(false);
 		} else {
-			alert(`Error: ${res.message}`)
+			alert(`Error: ${res.message}`);
 		}
 	}
 
@@ -53,7 +52,7 @@ export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOp
 			</header>
 
 			<div>
-				<label htmlFor="name" className="block text-sm font-medium text-slate-800">Name *</label>
+				<label htmlFor="name" className="block text-sm font-medium text-slate-700">Name *</label>
 				<input id="name" name="name" type="text" placeholder='name' required onChange={handleChange}
 				className="mt-1 w-full rounded-md border border-blue-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white text-slate-700"/>
 			</div>
@@ -65,7 +64,7 @@ export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOp
 			</div>
 
 			<fieldset className="mt-2">
-				<legend className="text-sm font-medium text-blue-800">Gender *</legend>
+				<legend className="text-sm font-medium text-slate-700">Gender *</legend>
 				<div className="mt-2 flex gap-4">
 				<label className="inline-flex items-center gap-2 text-sm text-blue-700">
 					<input type="radio" name="gender" value="F" required onChange={handleChange} className="h-4 w-4 checked:bg-blue-600 appearance-none rounded-full bg-white" />

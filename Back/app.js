@@ -1,10 +1,10 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import dotenv from 'dotenv';
 
 import indexRouter from './routes/index.js';
 import babyRouter from './routes/babies.js';
+import recordRouter from './routes/records.js'
 // import errorHandler from './middleware/errorHandler';
 
 var app = express();
@@ -16,6 +16,7 @@ app.use(cookieParser());
 
 app.use('/api/', indexRouter);
 app.use('/api/babies', babyRouter);
+app.use('/api/records', recordRouter);
 
 // app.use(errorHandler);
 

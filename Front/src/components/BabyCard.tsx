@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import type { Baby } from '../types/Baby';
+import { display_age } from '../utils/dateUtils';
 
 export default function BabyCard(props: { baby: Baby}) {
 	let genderIcon;
@@ -12,17 +13,6 @@ export default function BabyCard(props: { baby: Baby}) {
 		genderIcon = <span title="Other">⚥</span>;
 	}
 
-	const today = new Date();
-	const birthdate = new Date(props.baby.birthdate);
-	let age = (today.getFullYear() - birthdate.getFullYear()) * 12 + today.getMonth() - birthdate.getMonth();
-	let age_text;
-	if (age > 0) {
-		age_text = `${age} months`;
-	} else {
-		age = today.getDate() - birthdate.getDate();
-		age_text = `${age} days`;
-	}
-
 	return (
         <Link className="bg-white border border-blue-50 rounded-xl shadow-md p-6 mb-4 transition-transform hover:scale-105 hover:shadow-lg flex items-center justify-between"
 			to={`/baby/${props.baby.id}`}>
@@ -30,7 +20,7 @@ export default function BabyCard(props: { baby: Baby}) {
                 <span className="text-2xl mr-2">{genderIcon}</span>
                 <span className="text-lg font-bold text-blue-700">{props.baby.name}</span>
             </div>
-            <span className="text-sm text-gray-500">{age_text}</span>
+            <span className="text-sm text-gray-500">{display_age(props.baby.birthdate)}</span>
         </Link>
 	)
 }
