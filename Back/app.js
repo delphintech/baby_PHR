@@ -5,6 +5,7 @@ import logger from 'morgan';
 import indexRouter from './routes/index.js';
 import babyRouter from './routes/babies.js';
 import recordRouter from './routes/records.js'
+import vaccineRouter from './routes/vaccines.js'
 // import errorHandler from './middleware/errorHandler';
 
 var app = express();
@@ -17,6 +18,7 @@ app.use(cookieParser());
 app.use('/api/', indexRouter);
 app.use('/api/babies', babyRouter);
 app.use('/api/records', recordRouter);
+app.use('/api/vaccines', vaccineRouter);
 
 // app.use(errorHandler);
 

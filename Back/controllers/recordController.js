@@ -11,14 +11,14 @@ const recordController = {
 	},
 
 	createRecord: async (req, res) => {
-		console.log(req.body);
 		try {
+			const data = req.body;
 			const record = await Record.createRecord(
-				req.body.baby_id, 
-				req.body.date, 
-				Number(req.body.weight), 
-				Number(req.body.height), 
-				req.body.notes)
+				data.baby_id, 
+				data.date, 
+				Number(data.weight), 
+				Number(data.height), 
+				data.notes)
 			res.json({ status: "ok", data: record })
 		} catch (error) {
 			res.status(500).json({ status: "error", message: error.message })

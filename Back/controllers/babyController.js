@@ -21,8 +21,8 @@ const babyController = {
 
 	createBaby: async (req, res) => {
 		try {
-			console.log(req.body)
-			const baby = await Baby.createBaby(req.body.name, req.body.birthdate, req.body.gender);
+			const data = req.body;
+			const baby = await Baby.createBaby(data.name, data.birthdate, data.gender);
 			res.json({ status: 'ok', data: baby})
 		} catch (error) {
 			res.status(500).json({ status: 'error', message: error.message });
