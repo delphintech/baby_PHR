@@ -1,0 +1,101 @@
+date,full name,height,weight,notes
+2023-03-15,Olivia Bennett,54 cm,4.1 kg,routine newborn check
+2023-05-10,Olivia Bennett,59 cm,5.2 kg,healthy growth
+2023-07-12,Olivia Bennett,63 cm,6.0 kg,teething begins
+2023-09-20,Olivia Bennett,67 cm,7.1 kg,normal exam
+2023-12-05,Olivia Bennett,71 cm,8.0 kg,mild cold
+2024-03-14,Olivia Bennett,75 cm,9.0 kg,walking attempts
+2024-06-18,Olivia Bennett,79 cm,9.7 kg,healthy
+2024-09-22,Olivia Bennett,82 cm,10.3 kg,routine check
+2024-12-18,Olivia Bennett,85 cm,11.0 kg,good development
+2025-03-20,Olivia Bennett,88 cm,11.7 kg,talking more
+2022-05-05,Liam Carter,57 cm,4.3 kg,newborn healthy
+2022-07-08,Liam Carter,62 cm,5.4 kg,routine check
+2022-09-12,Liam Carter,66 cm,6.2 kg,teething
+2022-11-21,Liam Carter,70 cm,7.0 kg,slight cough
+2023-02-14,Liam Carter,74 cm,7.8 kg,healthy exam
+2023-05-10,Liam Carter,78 cm,8.5 kg,walking
+2023-08-03,Liam Carter,82 cm,9.2 kg,normal development
+2023-11-17,Liam Carter,86 cm,10.0 kg,healthy
+2024-03-02,Liam Carter,89 cm,10.8 kg,routine check
+2024-07-19,Liam Carter,92 cm,11.4 kg,growth on track
+2024-03-20,Ava Thompson,52 cm,3.8 kg,newborn exam
+2024-05-11,Ava Thompson,56 cm,4.6 kg,healthy feeding
+2024-07-15,Ava Thompson,60 cm,5.3 kg,teething soon
+2024-09-10,Ava Thompson,64 cm,6.0 kg,normal visit
+2024-11-29,Ava Thompson,68 cm,6.8 kg,first cold
+2025-02-10,Ava Thompson,71 cm,7.5 kg,recovering well
+2025-04-22,Ava Thompson,74 cm,8.1 kg,crawling
+2025-06-30,Ava Thompson,77 cm,8.7 kg,standing assisted
+2025-09-12,Ava Thompson,80 cm,9.2 kg,healthy check
+2025-12-08,Ava Thompson,83 cm,9.9 kg,walking
+2022-02-10,Noah Ramirez,55 cm,4.0 kg,newborn check
+2022-04-28,Noah Ramirez,60 cm,5.0 kg,healthy
+2022-06-30,Noah Ramirez,64 cm,5.9 kg,growing strong
+2022-09-15,Noah Ramirez,69 cm,6.8 kg,slight rash
+2022-12-01,Noah Ramirez,73 cm,7.6 kg,routine check
+2023-03-22,Noah Ramirez,77 cm,8.4 kg,starting to walk
+2023-06-14,Noah Ramirez,80 cm,9.1 kg,healthy progress
+2023-09-05,Noah Ramirez,83 cm,9.8 kg,normal visit
+2023-12-18,Noah Ramirez,86 cm,10.5 kg,good appetite
+2024-04-10,Noah Ramirez,89 cm,11.2 kg,active toddler
+2023-11-15,Sophia Martinez,53 cm,3.9 kg,newborn visit
+2024-01-20,Sophia Martinez,57 cm,4.8 kg,healthy
+2024-03-18,Sophia Martinez,61 cm,5.5 kg,routine exam
+2024-06-02,Sophia Martinez,65 cm,6.3 kg,good growth
+2024-08-24,Sophia Martinez,69 cm,7.1 kg,teething
+2024-11-10,Sophia Martinez,72 cm,7.8 kg,normal visit
+2025-02-19,Sophia Martinez,75 cm,8.5 kg,standing with help
+2025-05-30,Sophia Martinez,79 cm,9.1 kg,healthy
+2025-08-14,Sophia Martinez,82 cm,9.8 kg,regular exam
+2025-11-22,Sophia Martinez,85 cm,10.3 kg,development on track
+2022-12-20,Ethan Kelly,54 cm,4.1 kg,newborn exam
+2023-02-28,Ethan Kelly,58 cm,4.9 kg,normal check
+2023-05-10,Ethan Kelly,62 cm,5.7 kg,healthy
+2023-07-20,Ethan Kelly,66 cm,6.5 kg,routine visit
+2023-10-05,Ethan Kelly,70 cm,7.3 kg,slight congestion
+2024-01-15,Ethan Kelly,74 cm,8.0 kg,recovered
+2024-04-12,Ethan Kelly,77 cm,8.7 kg,crawling
+2024-07-18,Ethan Kelly,81 cm,9.3 kg,walking attempts
+2024-10-22,Ethan Kelly,84 cm,10.0 kg,healthy exam
+2025-02-02,Ethan Kelly,87 cm,10.6 kg,very active
+2021-10-10,Mia Anderson,56 cm,4.2 kg,newborn exam
+2021-12-05,Mia Anderson,60 cm,5.1 kg,healthy feeding
+2022-02-19,Mia Anderson,64 cm,5.9 kg,growing well
+2022-05-01,Mia Anderson,68 cm,6.6 kg,mild rash
+2022-08-10,Mia Anderson,72 cm,7.3 kg,routine check
+2022-11-03,Mia Anderson,76 cm,8.0 kg,walking early
+2023-02-14,Mia Anderson,80 cm,8.7 kg,good development
+2023-06-01,Mia Anderson,83 cm,9.4 kg,healthy
+2023-09-15,Mia Anderson,86 cm,10.0 kg,routine check
+2024-01-04,Mia Anderson,89 cm,10.7 kg,normal
+2024-07-10,Lucas Wright,51 cm,3.7 kg,newborn visit
+2024-09-02,Lucas Wright,55 cm,4.4 kg,healthy
+2024-11-11,Lucas Wright,59 cm,5.2 kg,normal check
+2025-01-18,Lucas Wright,62 cm,5.9 kg,growth on track
+2025-03-30,Lucas Wright,66 cm,6.5 kg,first teeth
+2025-06-12,Lucas Wright,70 cm,7.2 kg,healthy
+2025-08-27,Lucas Wright,73 cm,7.8 kg,crawling
+2025-11-09,Lucas Wright,76 cm,8.4 kg,standing support
+2025-11-22,Lucas Wright,79 cm,9.0 kg,normal visit
+2025-12-14,Lucas Wright,82 cm,9.5 kg,active
+2023-06-10,Isabella Hughes,53 cm,3.9 kg,newborn check
+2023-08-05,Isabella Hughes,57 cm,4.7 kg,healthy
+2023-10-18,Isabella Hughes,61 cm,5.4 kg,growing well
+2024-01-12,Isabella Hughes,65 cm,6.1 kg,normal
+2024-04-03,Isabella Hughes,69 cm,6.8 kg,teething
+2024-06-25,Isabella Hughes,72 cm,7.5 kg,healthy
+2024-09-17,Isabella Hughes,75 cm,8.1 kg,crawling
+2024-12-09,Isabella Hughes,78 cm,8.8 kg,standing
+2025-03-18,Isabella Hughes,81 cm,9.4 kg,walking
+2025-06-30,Isabella Hughes,84 cm,10.0 kg,good progress
+2022-09-10,Benjamin Scott,55 cm,4.0 kg,newborn exam
+2022-11-22,Benjamin Scott,59 cm,4.8 kg,healthy
+2023-02-02,Benjamin Scott,63 cm,5.6 kg,routine check
+2023-04-20,Benjamin Scott,67 cm,6.4 kg,normal visit
+2023-07-14,Benjamin Scott,71 cm,7.1 kg,slight cold
+2023-10-05,Benjamin Scott,75 cm,7.9 kg,recovered
+2024-01-16,Benjamin Scott,79 cm,8.6 kg,walking
+2024-04-28,Benjamin Scott,82 cm,9.3 kg,healthy growth
+2024-08-02,Benjamin Scott,85 cm,9.9 kg,talking more
+2024-11-25,Benjamin Scott,88 cm,10.4 kg,routine exam

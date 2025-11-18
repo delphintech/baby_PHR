@@ -1,5 +1,7 @@
 import pool from '../config/db.js';
+import fs from 'fs';
 import { faker } from '@faker-js/faker';
+import { parse } from 'csv-parse/sync';
 
 const seedDatabase = async () => {
 	try {
@@ -10,8 +12,19 @@ const seedDatabase = async () => {
 		await pool.query('DELETE FROM health_records');
 		await pool.query('DELETE FROM babies');
 
-		const NUM_BABIES = 20;
-		const RECORDS_PER_BABY = 10;
+		// Ten Babies
+		const babies = [
+			{ name: "Olivia Bennett", gender: "F", birthdate: "2023-03-15" },
+			{ name: "Liam Carter", gender: "M", birthdate: "2022-05-05" },
+			{ name: "Ava Thompson", gender: "F", birthdate: "2024-03-20" },
+			{ name: "Noah Ramirez", gender: "M", birthdate: "2022-02-10" },
+			{ name: "Sophia Martinez", gender: "F", birthdate: "2023-11-15" },
+			{ name: "Ethan Kelly", gender: "M", birthdate: "2022-12-20" },
+			{ name: "Mia Anderson", gender: "F", birthdate: "2021-10-10" },
+			{ name: "Lucas Wright", gender: "M", birthdate: "2024-07-10" },
+			{ name: "Isabella Hughes", gender: "F", birthdate: "2023-06-10" },
+			{ name: "Benjamin Scott", gender: "M", birthdate: "2022-09-10" }
+		]
 
 		// Standard baby vaccines
 		const vaccines = [
@@ -33,58 +46,56 @@ const seedDatabase = async () => {
 		]
 
 		// ---------- BABIES ----------
-		console.log(`Creating ${NUM_BABIES} babies...`);
+		console.log(`Creating ${babies.length} babies...`);
 		const babyIds = [];
 
-		for (let i = 0; i < NUM_BABIES; i++) {
-			const birthdate = faker.date.past({ years: 2, refDate: new Date('2024-12-31') });
-			const gender = faker.helpers.arrayElement(['M', 'F']);
-			const firstName = gender === 'M' ? faker.person.firstName('male') : faker.person.firstName('female');
-			const lastName = faker.person.lastName();
-
+		for (const baby of babies) {
 			const result = await pool.query(
 				`INSERT INTO babies (name, birthdate, gender) VALUES ($1, $2, $3) RETURNING id`,
-				[`${firstName} ${lastName}`, birthdate.toISOString().split('T')[0], gender]
+				[baby.name, baby.birthdate, baby.gender]
 			);
 
 			babyIds.push(result.rows[0].id);
 		}
-		console.log(`✓ Created ${NUM_BABIES} babies\n`);
+		console.log(`✓ Created ${babies.length} babies\n`);
 
 		// ---------- HEALTH RECORDS ----------
 		console.log(`Creating health records...`);
+
+		const csvFile = './config/baby_health_records.csv';
+		const csvContent = fs.readFileSync(csvFile, 'utf-8');
+			const records = parse(csvContent, {
+				columns: true,
+				skip_empty_lines: true,
+				trim: true,
+			});
+
 		let healthRecordCount = 0;
 
-		for (const babyId of babyIds) {
-			const babyResult = await pool.query('SELECT birthdate FROM babies WHERE id = $1', [babyId]);
-			const birthdate = new Date(babyResult.rows[0].birthdate);
-
-			for (let i = 0; i < RECORDS_PER_BABY; i++) {
-				const recordDate = new Date(birthdate);
-				recordDate.setMonth(recordDate.getMonth() + i); // Monthly records
-
-				const weight = faker.number.float({ min: 3.0, max: 12.0, precision: 0.1 }).toFixed(1); // kg
-				const height = faker.number.float({ min: 48, max: 75, precision: 0.1 }).toFixed(1); // cm
-				const notes = faker.helpers.arrayElement([
-				'Healthy checkup',
-				'Good weight gain',
-				'Normal development',
-				'Minor cold',
-				'Regular exam',
-				'Growing well',
-				'Feeding well',
-				]);
-
-				await pool.query(
-				`INSERT INTO health_records (baby_id, date, weight, height, notes) 
-				VALUES ($1, $2, $3, $4, $5)`,
-				[babyId, recordDate.toISOString().split('T')[0], weight, height, notes]
-				);
-
-				healthRecordCount++;
+		for (const row of records) {
+			const name = row['full name'];
+			// Find baby by name
+			const babyRes = await pool.query('SELECT id FROM babies WHERE name = $1', [name]);
+			if (babyRes.rows.length === 0) {
+				console.warn(`⚠️ Baby not found: ${name}, skipping record.`);
+				continue;
 			}
+			const baby_id = babyRes.rows[0].id;
+
+			// Insert health record
+			await pool.query(
+				`INSERT INTO health_records (baby_id, date, height, weight, notes) VALUES ($1, $2, $3, $4, $5)`,
+				[
+				baby_id,
+				row.date,
+				parseFloat(row.height),
+				parseFloat(row.weight),
+				row.notes
+				]
+			);
+			healthRecordCount++;
 		}
-		console.log(`✓ Created ${healthRecordCount} health records\n`);
+		console.log(`✓ Inserted ${healthRecordCount} health records from CSV\n`);
 
 		// ---------- VACCINATION ----------
 		console.log(`Creating vaccination records...`);
@@ -130,7 +141,7 @@ const seedDatabase = async () => {
 							completedAt = new Date(dueDate);
 							completedAt.setDate(completedAt.getDate() + daysAfterDue);
 						}
-    				}
+					}
 				}
 
                 await pool.query(
@@ -151,7 +162,7 @@ const seedDatabase = async () => {
 
 		console.log('✅ Database seeding complete!\n');
 		console.log('Summary:');
-		console.log(`  - Babies: ${NUM_BABIES}`);
+		console.log(`  - Babies: ${babies.length}`);
 		console.log(`  - Health Records: ${healthRecordCount}`);
 		console.log(`  - Vaccinations: ${vaccinationCount}\n`);
 
