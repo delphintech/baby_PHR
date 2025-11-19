@@ -1,0 +1,102 @@
+[
+  {
+    "months": 0,
+    "weight": [2.4, 4.2]
+  },
+  {
+    "months": 1,
+    "weight": [3.2, 5.4]
+  },
+  {
+    "months": 2,
+    "weight": [4, 6.5]
+  },
+  {
+    "months": 3,
+    "weight": [4.6, 7.4]
+  },
+  {
+    "months": 4,
+    "weight": [5.1, 8.1]
+  },
+  {
+    "months": 5,
+    "weight": [5.5, 8.7]
+  },
+  {
+    "months": 6,
+    "weight": [5.8, 9.2]
+  },
+  {
+    "months": 7,
+    "weight": [6.1, 9.6]
+  },
+  {
+    "months": 8,
+    "weight": [6.3, 10]
+  },
+  {
+    "months": 9,
+    "weight": [6.6, 10.4]
+  },
+  {
+    "months": 10,
+    "weight": [6.8, 10.7]
+  },
+  {
+    "months": 11,
+    "weight": [7.0, 11]
+  },
+  {
+    "months": 12,
+    "weight": [7.1, 11.3]
+  },
+  {
+    "months": 13,
+    "weight": [7.3, 11.6]
+  },
+  {
+    "months": 14,
+    "weight": [7.5, 11.9]
+  },
+  {
+    "months": 15,
+    "weight": [7.7, 12.2]
+  },
+  {
+    "months": 16,
+    "weight": [7.8, 12.5]
+  },
+  {
+    "months": 17,
+    "weight": [8, 12.7]
+  },
+  {
+    "months": 18,
+    "weight": [8.2, 13]
+  },
+  {
+    "months": 19,
+    "weight": [8.3, 13.3]
+  },
+  {
+    "months": 20,
+    "weight": [8.5, 13.5]
+  },
+  {
+    "months": 21,
+    "weight": [8.7, 13.8]
+  },
+  {
+    "months": 22,
+    "weight": [8.8, 14.1]
+  },
+  {
+    "months": 23,
+    "weight": [9.0, 14.3]
+  },
+  {
+    "months": 24,
+    "weight": [9.2, 14.6]
+  }
+]

@@ -36,6 +36,62 @@ const Record = {
 			throw error;
 		}
 	},
+
+	getBabyHeights: async (id) => {
+		try {
+			const result = await pool.query(
+				`SELECT h.height,
+					((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
+					+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
+					)::int AS months
+				FROM health_records h
+				JOIN babies b ON h.baby_id = b.id
+				WHERE h.baby_id = $1
+				ORDER BY h.date ASC`, [id]
+			);
+			return result.rows;
+		} catch (error) {
+			throw error;
+		}
+	},
+
+	getBabyWeights: async (id) => {
+		try {
+			const result = await pool.query(
+				`SELECT h.weight,
+					((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
+					+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
+					)::int AS months
+				FROM health_records h
+				JOIN babies b ON h.baby_id = b.id
+				WHERE h.baby_id = $1
+				ORDER BY h.date ASC`, [id]
+			);
+			return result.rows;
+		} catch (error) {
+			throw error;
+		}
+	},
+
+	// TODO: requests for Baby AVG
+	getBabyAvgs: async (id) => {
+		try {
+			const result = await pool.query(
+				`SELECT h.weight,
+					((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
+					+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
+					)::int AS months
+				FROM health_records h
+				JOIN babies b ON h.baby_id = b.id
+				WHERE h.baby_id = $1
+				ORDER BY h.date ASC`, [id]
+			);
+			return result.rows;
+		} catch (error) {
+			throw error;
+		}
+	},
+
 }
 
 export default Record;

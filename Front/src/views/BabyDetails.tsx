@@ -3,6 +3,8 @@ import type { Baby } from '../types/Baby'
 import { useParams, useNavigate } from 'react-router-dom';
 import BabyRecords from '../components/BabyRecords';
 import { display_age } from "../utils/dateUtils";
+import WeightChart from '../components/WeightChart';
+import HeightChart from '../components/HeightChart';
 
 function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	const [baby, setBaby] = useState<Baby | null>(null);
@@ -12,13 +14,13 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	let params = useParams();
 
 	useEffect(() => {
-	  fetch(`https://localhost:8443/api/babies/${params.id}`)
-		.then(res => res.json())
-		.then(data => {
-			setBaby(data.data)
-			props.setBaby(data.data)
-		})
-		.catch(err => console.error(err));
+		fetch(`https://localhost:8443/api/babies/${params.id}`)
+			.then(res => res.json())
+			.then(data => {
+				setBaby(data.data)
+				props.setBaby(data.data)
+			})
+			.catch(err => console.error(err));
 	}, []);
 
 	async function handleDelete() {
@@ -47,7 +49,6 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	}
 
 	// TODO: AVG growth records
-	// TODO: Growth chart
 
 	return (
         <section className="p-4">
@@ -66,11 +67,16 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 				</div>
             </div>
 
+			<section className="bg-white rounded-2xl shadow p-6 mb-6">
+				<h2 className="text-xl font-semibold text-blue-700 mb-4">Growth Chart (0–24 months)</h2>
+				
+				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+				{baby && <WeightChart baby={baby} />}
+				{baby && <HeightChart baby={baby} />}
+				</div>
+			</section>
+			
 			<BabyRecords baby={baby}/>
-
-            <div className="bg-white rounded-2xl shadow p-4 mb-6">
-				<h2 className="text-lg font-semibold mb-2 text-blue-700">Growth Chart</h2>
-            </div>
 
 			<div className="bg-white rounded-2xl shadow p-4 mb-6 flex justify-between items-center">
 				<p className="text-red-500 text-start">Delete all <strong>{baby?.name}</strong> records</p>

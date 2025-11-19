@@ -2,8 +2,9 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
 import type { Baby } from './types/Baby.ts'
 import Home from './views/Home.tsx';
-import BabyDetails from './views/babyDetails.tsx';
 import Vaccination from './views/Vaccination.tsx';
+import BabyDetails from './views/BabyDetails.tsx';
+import Statistics from './views/Statistics.tsx';
 import './index.css'
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/baby/:id" element={<BabyDetails setBaby={setBaby} />} />
           <Route path="/baby/:id/vaccination" element={<Vaccination />} />
+          <Route path="/statistics" element={<Statistics />} />
         </Routes>
       </BrowserRouter>
   );

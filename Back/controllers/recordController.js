@@ -32,6 +32,24 @@ const recordController = {
 		} catch (error) {
 			res.status(500).json({ status: "error", message: error.message })
 		}
+	},
+
+	getBabyHeights: async (req, res) => {
+		try {
+			const records = await Record.getBabyHeights(req.params.id);
+			res.json({ status: "ok", data: records })
+		} catch (error) {
+			res.status(500).json({ status: "error", message: error.message })
+		}
+	},
+
+	getBabyWeights: async (req, res) => {
+		try {
+			const records = await Record.getBabyWeights(req.params.id);
+			res.json({ status: "ok", data: records })
+		} catch (error) {
+			res.status(500).json({ status: "error", message: error.message })
+		}
 	}
 };
 
