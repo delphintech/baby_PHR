@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import type { Baby } from "../types/Baby";
-import type { Record } from "../types/Record";
+import type { Baby } from "../../types/Baby";
+import type { Record } from "../../types/Record";
 import NewRecordForm from "./NewRecordForm";
 
 export default function BabyRecords (props: { baby: Baby | null }) {

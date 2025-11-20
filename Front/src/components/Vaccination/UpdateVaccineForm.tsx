@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import type { Vaccine } from '../types/Vaccine';
-import { display_age } from '../utils/dateUtils';
+import type { Vaccine } from '../../types/Vaccine';
+import { display_age } from '../../utils/dateUtils';
 
 export default function UpdateVaccineForm (props: { 
 	vaccine : Vaccine, 

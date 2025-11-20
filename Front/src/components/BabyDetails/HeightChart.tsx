@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-import GirlHeight from "../assets/girl_height_2years.json"
-import BoyHeight from "../assets/boy_height_2years.json"
-import type { Baby } from "../types/Baby";
+import GirlHeight from "../../assets/girl_height_2years.json"
+import BoyHeight from "../../assets/boy_height_2years.json"
+import type { Baby } from "../../types/Baby";
 
 export default function HeightChart(props: { baby: Baby}) {
 	const [normalData, setNormalData] = useState<any[]>([]);;
@@ -29,7 +29,7 @@ export default function HeightChart(props: { baby: Baby}) {
 				<YAxis width="auto" />
 				<Legend verticalAlign="bottom" iconType="rect" />
 				<Tooltip />
-				<Line name="Baby height" type="natural" data={babyData} dataKey="height" stroke="#823ec2ff" connectNulls />
+				<Line name="Baby height" type="natural" data={babyData} dataKey="height" stroke="#22b60eff" connectNulls />
 				<Area name="Reference" type="monotone" dataKey="height" stroke="none" fill="#cccccc" connectNulls dot={false} activeDot={false} />
 			</ComposedChart>
 		</div>

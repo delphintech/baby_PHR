@@ -50,6 +50,23 @@ const recordController = {
 		} catch (error) {
 			res.status(500).json({ status: "error", message: error.message })
 		}
+	},
+
+	getBabyAvgs: async (req, res) => {
+		try {
+			const avgWeightGain = await Record.getBabyAvgWeightGain(req.params.id);
+			const avgHeightGain = await Record.getBabyAvgHeightGain(req.params.id);
+			const records = await Record.getBabyRecords(req.params.id);
+			const lastRecord = records[0];
+
+			res.json({ status: "ok", data: {
+				avgHeightGain: avgHeightGain.avg_monthly_gain,
+				avgWeightGain: avgWeightGain.avg_monthly_gain,
+				lastRecord: lastRecord
+			}})
+		} catch (error) {
+			res.status(500).json({ status: "error", message: error.message })
+		}
 	}
 };
 

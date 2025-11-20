@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import type { Baby } from '../types/Baby';
 import { useNavigate } from 'react-router-dom';
-import BabyCard from '../components/BabyCard';
-import NewBabyForm from '../components/NewBabyFrom';
+import BabyCard from '../components/Home/BabyCard';
+import NewBabyForm from '../components/Home/NewBabyFrom';
 
 function Home() {
 	const [babies, setBabies] = useState<Baby[] | null>(null)

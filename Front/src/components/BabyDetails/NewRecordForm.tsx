@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { Baby } from '../types/Baby';
+import type { Baby } from '../../types/Baby';
 
 export default function NewRecordForm (props: { baby: Baby | null, isOpen: boolean, setOpenForm: (isOpen: boolean) => void, setReload: (reload: boolean) => void}) {
 	const [formData, setFormData] = useState({

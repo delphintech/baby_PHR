@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import type { Vaccine } from '../types/Vaccine';
-import UpdateVaccineForm from '../components/UpdateVaccineForm';
+import UpdateVaccineForm from '../components/Vaccination/UpdateVaccineForm';
 
 function Vaccination() {
 	const [selectedVaccine, setSelectedVaccine] = useState<Vaccine | null>(null);
 	const [vaccines, setVaccines] = useState<Array<Vaccine>>([]);
 	const [reload, setReload] = useState(true);
 
+	const navigate = useNavigate();
 	const params = useParams();
+
 	useEffect(() => {
 		if (!reload) return;
 		fetch(`https://localhost:8443/api/babies/${params.id}/vaccines`)
@@ -55,6 +57,14 @@ function Vaccination() {
 						)}
 					</tbody>
 				</table>
+				<div className="pt-2 flex justify-center">
+					<button
+						className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+						onClick={() => navigate(`/baby/${params.id}`)}
+					>
+						Go to General info
+					</button>
+				</div>
 			</div>
 		</section>
 	);

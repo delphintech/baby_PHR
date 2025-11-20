@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import type { Baby } from '../types/Baby';
-import { display_age } from '../utils/dateUtils';
+import type { Baby } from '../../types/Baby';
+import { display_age } from '../../utils/dateUtils';
 
 export default function BabyCard(props: { baby: Baby}) {
 	let genderIcon;

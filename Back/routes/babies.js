@@ -16,6 +16,7 @@ router.delete('/:id', babyController.deleteBaby);
 router.get('/:id/records', recordController.getBabyRecords);
 router.get('/:id/heights', recordController.getBabyHeights);
 router.get('/:id/weights', recordController.getBabyWeights);
+router.get('/:id/avgs', recordController.getBabyAvgs);
 
 router.get('/:id/vaccines', vaccineController.getBabyVaccine);
 

@@ -1,16 +1,15 @@
 import { useState, useEffect } from 'react';
 import type { Baby } from '../types/Baby'
 import { useParams, useNavigate } from 'react-router-dom';
-import BabyRecords from '../components/BabyRecords';
-import { display_age } from "../utils/dateUtils";
-import WeightChart from '../components/WeightChart';
-import HeightChart from '../components/HeightChart';
+import BabyRecords from '../components/BabyDetails/BabyRecords';
+import GeneralInfoCard from '../components/BabyDetails/GeneralInfoCard';
+import WeightChart from '../components/BabyDetails/WeightChart';
+import HeightChart from '../components/BabyDetails/HeightChart';
 
 function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	const [baby, setBaby] = useState<Baby | null>(null);
 
 	const navigate = useNavigate();
-
 	let params = useParams();
 
 	useEffect(() => {
@@ -37,35 +36,11 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 			}
 		}
 	}
-	
-	const birthdate = (baby ? new Date(baby?.birthdate).toLocaleDateString("en-GB") : "")
-	let gender;
-	if (baby?.gender == "F") {
-		gender = "female ♀️"
-	} else if (baby?.gender == "M") {
-		gender = "male ♂️"
-	} else {
-		gender = "other ⚥"
-	}
-
-	// TODO: AVG growth records
 
 	return (
         <section className="p-4">
-            <div className="bg-white rounded-2xl shadow p-4 mb-6">
-				<h2 className="text-lg font-semibold mb-2 text-blue-700">Basic Info</h2>
-				<p className="text-gray-800"><strong>Birthdate:</strong> {birthdate} ({display_age(baby?.birthdate)})</p>
-				<p className="text-gray-800"><strong>Gender:</strong> {gender}</p>
-				<br/>
-				<p className="text-gray-800"><strong>Avg Weight Gain:</strong> +0.4 kg/month</p>
-				<p className="text-gray-800"><strong>Avg Height Growth:</strong> +1.2 cm/month</p>
-				<p className="text-gray-800"><strong>BMI Trend:</strong> Normal</p>
-				<div className="flex justify-center mt-4">
-					<button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={() => navigate(`/baby/${baby?.id}/vaccination`)} disabled={!baby?.id} >
-						Go to Vaccines
-					</button>
-				</div>
-            </div>
+
+			{baby && <GeneralInfoCard baby={baby} />}
 
 			<section className="bg-white rounded-2xl shadow p-6 mb-6">
 				<h2 className="text-xl font-semibold text-blue-700 mb-4">Growth Chart (0–24 months)</h2>
