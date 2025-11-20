@@ -3,21 +3,20 @@ import type { Baby } from "../../types/Baby";
 import type { Record } from "../../types/Record";
 import NewRecordForm from "./NewRecordForm";
 
-export default function BabyRecords (props: { baby: Baby | null }) {
+export default function BabyRecords (props: { baby: Baby | null, setReload: (reload: boolean) => void }) {
 	const [records, setRecords] = useState<Array<Record>>([])
 	const [openForm, setOpenForm] = useState(false)
 	const [collapsed, setCollapsed] = useState(true)
-	const [reload, setReload] = useState(true)
+	// const [reload, setReload] = useState(true)
 
 	useEffect(() => {
-		if (!props.baby || !reload) return;
+		if (!props.baby) return;
 		fetch(`https://localhost:8443/api/babies/${props.baby?.id}/records`)
 			.then(res => res.json())
 			.then(data => { 
 				setRecords(data.data) })
 		.catch(err => console.error(err));
-		setReload(false)
-	}, [props.baby, reload])
+	}, [props.baby])
 
 	async function handleDelete(id: number) {
 		if(window.confirm(`Are you sure you want to delete this records ?`)) {
@@ -28,7 +27,7 @@ export default function BabyRecords (props: { baby: Baby | null }) {
 			if (res.status != "ok") {
 				alert(`Error: ${res.message}`)
 			} else {
-				setReload(true)
+				props.setReload(true)
 			}
 		}
 	}
@@ -38,7 +37,7 @@ export default function BabyRecords (props: { baby: Baby | null }) {
 			<div className="flex justify-between items-center mb-3">
 				<h2 className="text-lg font-semibold text-blue-700" onClick={() => setCollapsed(c => !c)}>Growth Records {collapsed ? "▼" : "▲"}</h2>
 				<button className="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700" onClick={() => setOpenForm(true)}>+ Add Record</button>
-				<NewRecordForm baby={props.baby} isOpen={openForm} setOpenForm={setOpenForm} setReload={setReload} />
+				<NewRecordForm baby={props.baby} isOpen={openForm} setOpenForm={setOpenForm} setReload={props.setReload} />
 			</div>
 			<div className={`transition-all duration-300 ease-in-out overflow-hidden ${collapsed ? "max-h-0 opacity-0" : "max-h-[1000px] opacity-100"}`} >
 				<table data-collapse="collapse" className="w-full text-sm">

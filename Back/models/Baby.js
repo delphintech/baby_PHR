@@ -22,15 +22,16 @@ const Baby = {
 		}
 	},
 
-	createBaby: async (name, birthdate, gender) => {
+	createBaby: async (name, birthdate, gender, queryClient = null) => {
 		if (!name || !birthdate || !gender) {
 			throw new Error("name, birthdate and gender must not be null")
 		}
 		if (!['M', 'F', 'O'].includes(gender)) {
 			throw new Error("Gender must be 'M', 'F' or 'O'")
 		}
+		const client = queryClient || pool;
 		try {
-			const result = await pool.query('INSERT INTO babies (name, birthdate, gender) VALUES ($1, $2, $3) RETURNING *', [name, birthdate, gender]);
+			const result = await client.query('INSERT INTO babies (name, birthdate, gender) VALUES ($1, $2, $3) RETURNING *', [name, birthdate, gender]);
 			return result.rows[0];
 		} catch (error) {
 			throw error;

@@ -4,7 +4,7 @@ import GirlWeight from "../../assets/girl_weight_2years.json"
 import BoyWeight from "../../assets/boy_weight_2years.json"
 import type { Baby } from "../../types/Baby";
 
-export default function WeightChart(props: { baby: Baby}) {
+export default function WeightChart(props: { baby: Baby }) {
 	const [normalData, setNormalData] = useState<any[]>([]);;
 	const [babyData, setBabyData] = useState<any[]>([]);;
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOpen: boolean) => void}) {
+export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOpen: boolean) => void, setReload: (reload: boolean) => void}) {
 	const [formData, setFormData] = useState({
 		name: "",
 		gender: "",
@@ -30,6 +30,7 @@ export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOp
 		if (res.status == "ok") {
 			alert(`${res.data.name} has been created`);
 			props.setOpenForm(false);
+			props.setReload(true);
 		} else {
 			alert(`Error: ${res.message}`);
 		}

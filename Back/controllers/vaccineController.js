@@ -27,7 +27,7 @@ const vaccineController = {
 		} catch (error) {
 			res.status(500).json({ status: "error", message: error.message })
 		}
-	} 
+	},
 };
 
 export default vaccineController;

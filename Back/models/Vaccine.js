@@ -26,6 +26,19 @@ const Vaccine = {
 		} catch (error) {
 			throw error;
 		}
+	},
+
+	createVaccine: async (baby_id, name, due_date, completed, completed_at, queryClient = null) => {
+		const client = queryClient || pool;
+		try {
+			const result = await client.query(
+				`INSERT INTO vaccinations (baby_id, name, due_date, completed, completed_at)
+				VALUES ($1, $2, $3, $4, $5) RETURNING *`
+				, [baby_id, name, due_date, completed, completed_at])
+			return result.rows[0];
+		} catch (error) {
+			throw error
+		}
 	}
 }
 

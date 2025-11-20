@@ -8,11 +8,14 @@ import HeightChart from '../components/BabyDetails/HeightChart';
 
 function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	const [baby, setBaby] = useState<Baby | null>(null);
+	const [reload, setReload] = useState(true);
 
 	const navigate = useNavigate();
 	let params = useParams();
 
 	useEffect(() => {
+		if (!reload) return;
+
 		fetch(`https://localhost:8443/api/babies/${params.id}`)
 			.then(res => res.json())
 			.then(data => {
@@ -20,7 +23,8 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 				props.setBaby(data.data)
 			})
 			.catch(err => console.error(err));
-	}, []);
+		setReload(false)
+	}, [reload]);
 
 	async function handleDelete() {
 		if(window.confirm(`Are you sure you want to delete all ${baby?.name}'s records ?`)) {
@@ -45,13 +49,13 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 			<section className="bg-white rounded-2xl shadow p-6 mb-6">
 				<h2 className="text-xl font-semibold text-blue-700 mb-4">Growth Chart (0–24 months)</h2>
 				
-				<div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+				<div className="grid grid-cols-1 gap-6">
 				{baby && <WeightChart baby={baby} />}
 				{baby && <HeightChart baby={baby} />}
 				</div>
 			</section>
 			
-			<BabyRecords baby={baby}/>
+			<BabyRecords baby={baby} setReload={setReload}/>
 
 			<div className="bg-white rounded-2xl shadow p-4 mb-6 flex justify-between items-center">
 				<p className="text-red-500 text-start">Delete all <strong>{baby?.name}</strong> records</p>

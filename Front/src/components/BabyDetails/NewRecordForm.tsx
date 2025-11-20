@@ -6,7 +6,7 @@ export default function NewRecordForm (props: { baby: Baby | null, isOpen: boole
 		weight: 0,
 		height: 0,
 		notes: "",
-		date: new Date()
+		date: new Date().toISOString().slice(0, 10)
 	})
 
 	function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -20,6 +20,7 @@ export default function NewRecordForm (props: { baby: Baby | null, isOpen: boole
 	async function handleSubmit(event: React.FormEvent) {
 		event.preventDefault();
 
+		// TODO: Check the date is after birth
 		const res = await fetch("https://localhost:8443/api/records", {
 			method: "POST",
 			headers: {
@@ -66,8 +67,8 @@ export default function NewRecordForm (props: { baby: Baby | null, isOpen: boole
 			</div>
 
 			<div>
-				<label htmlFor="birthdate" className="block text-sm font-medium text-slate-700">Date *</label>
-				<input id="birthdate" name="birthdate" type="date" value={formData.date.toISOString().slice(0, 10)} required onChange={handleChange}
+				<label htmlFor="date" className="block text-sm font-medium text-slate-700">Date *</label>
+				<input id="date" name="date" type="date" value={formData.date} required onChange={handleChange}
 				className="mt-1 w-full rounded-md border border-blue-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white text-slate-700" />
 			</div>
 			<div>
