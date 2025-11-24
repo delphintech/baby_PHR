@@ -58,6 +58,27 @@ const recordController = {
 		} catch (error) {
 			res.status(500).json({ status: "error", message: error.message })
 		}
+	},
+
+	getAvgsByGender: async (req, res) => {
+		if (!['F', 'M', 'O'].includes(req.params.gender)) {
+			return res.status(500).json({ status: "error", message: "Metric must be 'F', 'M' or 'O'" });
+		}
+		try {
+			const results = {}
+			for (const gender of ['M', 'F', 'O']) {
+				const avgWeightGain = await Record.getAvgGainByGender(gender, "weight");
+				const avgHeightGain = await Record.getAvgGainByGender(gender, "height");
+				results[gender] = {
+					avgHeightGain: avgHeightGain.avg_monthly_gain,
+					avgWeightGain: avgWeightGain.avg_monthly_gain
+				}
+			}
+
+			res.json({ status: "ok", data: results })
+		} catch (error) {
+			res.status(500).json({ status: "error", message: error.message })
+		}
 	}
 };
 

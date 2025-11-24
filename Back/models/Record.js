@@ -94,19 +94,39 @@ const Record = {
 		}
 	},
 
-	getAllAvgGain: async (id, metric) => {
+	getAvgGainByGender: async (gender, metric) => {
+		if (!['F', 'M', 'O'].includes(gender)) {
+            throw new Error("Metric must be 'F', 'M' or 'O'");
+        }
+		if (!['height', 'weight'].includes(metric)) {
+            throw new Error("Metric must be 'height' or 'weight'");
+        }
 		try {
 			const result = await pool.query(
-				`SELECT h.weight,
-					((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
-					+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
-					)::int AS months
-				FROM health_records h
-				JOIN babies b ON h.baby_id = b.id
-				WHERE h.baby_id = $1
-				ORDER BY h.date ASC`, [id]
+				`WITH monthly AS (
+					SELECT h.${metric},
+						((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
+						+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
+						)::int AS months
+					FROM health_records h
+					JOIN babies b ON h.baby_id = b.id
+					WHERE b.gender = $1
+				),
+				per_month AS (
+					SELECT months, AVG(${metric}) AS month_metric
+					FROM monthly
+					GROUP BY months
+				),
+				deltas AS (
+					SELECT months,
+						month_metric - LAG(month_metric) OVER (ORDER BY months) AS gain
+					FROM per_month
+				)
+				SELECT ROUND(COALESCE(AVG(gain), 0)::numeric, 2) AS avg_monthly_gain
+				FROM deltas;`
+				, [gender]
 			);
-			return result.rows;
+			return result.rows[0];
 		} catch (error) {
 			throw error;
 		}
