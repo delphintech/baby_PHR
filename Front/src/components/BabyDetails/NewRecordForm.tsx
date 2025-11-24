@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Baby } from '../../types/Baby';
 
-export default function NewRecordForm (props: { baby: Baby | null, isOpen: boolean, setOpenForm: (isOpen: boolean) => void, setReload: (reload: boolean) => void}) {
+export default function NewRecordForm (props: { baby: Baby, isOpen: boolean, setOpenForm: (isOpen: boolean) => void, setReload: (reload: boolean) => void}) {
 	const [formData, setFormData] = useState({
 		weight: 0,
 		height: 0,
@@ -20,7 +20,9 @@ export default function NewRecordForm (props: { baby: Baby | null, isOpen: boole
 	async function handleSubmit(event: React.FormEvent) {
 		event.preventDefault();
 
-		// TODO: Check the date is after birth
+		if (new Date(formData.date) < new Date( props.baby.birthdate)) {
+			return alert(`Error: The record should not be set before birth.`);
+		}
 		const res = await fetch("https://localhost:8443/api/records", {
 			method: "POST",
 			headers: {
