@@ -3,19 +3,19 @@ import type { Baby } from '../types/Baby'
 import { useNavigate } from 'react-router-dom';
 
 function Statistics() {
-	const [baby, setBaby] = useState<Baby | null>(null);
+	// const [baby, setBaby] = useState<Baby | null>(null);
 
 	const navigate = useNavigate();
 
 
-	useEffect(() => {
-	  	fetch(`https://localhost:8443/api/babies`)
-		.then(res => res.json())
-		.then(data => {
-			setBaby(data.data)
-		})
-		.catch(err => console.error(err));
-	}, []);
+	// useEffect(() => {
+	//   	fetch(`https://localhost:8443/api/babies`)
+	// 	.then(res => res.json())
+	// 	.then(data => {
+	// 		setBaby(data.data)
+	// 	})
+	// 	.catch(err => console.error(err));
+	// }, []);
 
 	// TODO: Statistic page
 
@@ -30,8 +30,8 @@ function Statistics() {
 				<p className="text-gray-800"><strong>Avg Height Growth:</strong> +1.2 cm/month</p>
 				<p className="text-gray-800"><strong>BMI Trend:</strong> Normal</p>
 				<div className="flex justify-center mt-4">
-					<button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={() => navigate(`/baby/${baby?.id}/vaccination`)} >
-						Go to Vaccines
+					<button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700" onClick={() => navigate(`/`)} >
+						Back to babies
 					</button>
 				</div>
             </div>

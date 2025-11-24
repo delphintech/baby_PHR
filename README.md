@@ -23,7 +23,14 @@ baby_PHR/
 ```
 
 ## ❗❗ Getting started ❗❗
-- **Update .env :** Credentials are to be updated in every .env
+- **Update .env :**
+	```
+	POSTGRES_USER=
+	POSTGRES_DB=
+	POSTGRES_PASSWORD=
+	DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@localhost:5432/$POSTGRES_USER
+	```
+
 - **⚠️ To know:** Volume Data (database) is in .gitignore
 - **Add migration Database:**
 	`npm run migrate create migration-name # Create new migration`
