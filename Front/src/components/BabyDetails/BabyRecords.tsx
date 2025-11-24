@@ -37,7 +37,7 @@ export default function BabyRecords (props: { baby: Baby | null, setReload: (rel
 			<div className="flex justify-between items-center mb-3">
 				<h2 className="text-lg font-semibold text-blue-700" onClick={() => setCollapsed(c => !c)}>Growth Records {collapsed ? "▼" : "▲"}</h2>
 				<button className="bg-blue-500 text-white px-3 py-1 rounded-lg text-sm hover:bg-blue-700" onClick={() => setOpenForm(true)}>+ Add Record</button>
-				<NewRecordForm baby={props.baby} isOpen={openForm} setOpenForm={setOpenForm} setReload={props.setReload} />
+				{props.baby && <NewRecordForm baby={props.baby} isOpen={openForm} setOpenForm={setOpenForm} setReload={props.setReload} />}
 			</div>
 			<div className={`transition-all duration-300 ease-in-out overflow-hidden ${collapsed ? "max-h-0 opacity-0" : "max-h-[1000px] opacity-100"}`} >
 				<table data-collapse="collapse" className="w-full text-sm">

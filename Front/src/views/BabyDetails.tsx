@@ -3,8 +3,7 @@ import type { Baby } from '../types/Baby'
 import { useParams, useNavigate } from 'react-router-dom';
 import BabyRecords from '../components/BabyDetails/BabyRecords';
 import GeneralInfoCard from '../components/BabyDetails/GeneralInfoCard';
-import WeightChart from '../components/BabyDetails/WeightChart';
-import HeightChart from '../components/BabyDetails/HeightChart';
+import BabyMetricChart from '../components/BabyDetails/BabyMetricChart';
 
 function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	const [baby, setBaby] = useState<Baby | null>(null);
@@ -50,8 +49,8 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 				<h2 className="text-xl font-semibold text-blue-700 mb-4">Growth Chart (0–24 months)</h2>
 				
 				<div className="grid grid-cols-1 gap-6">
-				{baby && <WeightChart baby={baby} />}
-				{baby && <HeightChart baby={baby} />}
+				{baby && <BabyMetricChart baby={baby} metric="weight" />}
+				{baby && <BabyMetricChart baby={baby} metric="height" />}
 				</div>
 			</section>
 			

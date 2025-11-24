@@ -37,28 +37,14 @@ const Record = {
 		}
 	},
 
-	getBabyHeights: async (id) => {
-		try {
-			const result = await pool.query(
-				`SELECT h.height,
-					((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
-					+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
-					)::int AS months
-				FROM health_records h
-				JOIN babies b ON h.baby_id = b.id
-				WHERE h.baby_id = $1
-				ORDER BY h.date ASC`, [id]
-			);
-			return result.rows;
-		} catch (error) {
-			throw error;
-		}
-	},
 
-	getBabyWeights: async (id) => {
+	getBabyMetrics: async (id, metric) => {
+		if (!['height', 'weight'].includes(metric)) {
+            throw new Error("Metric must be 'height' or 'weight'");
+        }
 		try {
 			const result = await pool.query(
-				`SELECT h.weight,
+				`SELECT h.${metric},
 					((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
 					+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
 					)::int AS months
@@ -137,24 +123,23 @@ const Record = {
 		}
 	},
 
-	// TODO: API for Baby AVG
-	// getAllAvgHeightGain: async (id) => {
-	// 	try {
-	// 		const result = await pool.query(
-	// 			`SELECT h.weight,
-	// 				((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
-	// 				+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
-	// 				)::int AS months
-	// 			FROM health_records h
-	// 			JOIN babies b ON h.baby_id = b.id
-	// 			WHERE h.baby_id = $1
-	// 			ORDER BY h.date ASC`, [id]
-	// 		);
-	// 		return result.rows;
-	// 	} catch (error) {
-	// 		throw error;
-	// 	}
-	// }
+	getAllAvgHeightGain: async (id) => {
+		try {
+			const result = await pool.query(
+				`SELECT h.weight,
+					((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
+					+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
+					)::int AS months
+				FROM health_records h
+				JOIN babies b ON h.baby_id = b.id
+				WHERE h.baby_id = $1
+				ORDER BY h.date ASC`, [id]
+			);
+			return result.rows;
+		} catch (error) {
+			throw error;
+		}
+	}
 
 }
 
