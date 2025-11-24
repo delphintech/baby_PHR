@@ -59,11 +59,14 @@ const Record = {
 		}
 	},
 
-	getBabyAvgHeightGain: async (id) => {
+	getBabyAvgGain: async (id, metric) => {
+		if (!['height', 'weight'].includes(metric)) {
+            throw new Error("Metric must be 'height' or 'weight'");
+        }
 		try {
 			const result = await pool.query(
 				`WITH monthly AS (
-					SELECT h.height,
+					SELECT h.${metric},
 						((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
 						+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
 						)::int AS months
@@ -72,13 +75,13 @@ const Record = {
 					WHERE h.baby_id = $1
 				),
 				per_month AS (
-					SELECT months, AVG(height) AS month_height
+					SELECT months, AVG(${metric}) AS month_metric
 					FROM monthly
 					GROUP BY months
 				),
 				deltas AS (
 					SELECT months,
-						month_height - LAG(month_height) OVER (ORDER BY months) AS gain
+						month_metric - LAG(month_metric) OVER (ORDER BY months) AS gain
 					FROM per_month
 				)
 				SELECT ROUND(COALESCE(AVG(gain), 0)::numeric, 2) AS avg_monthly_gain
@@ -91,39 +94,7 @@ const Record = {
 		}
 	},
 
-	getBabyAvgWeightGain: async (id) => {
-		try {
-			const result = await pool.query(
-				`WITH monthly AS (
-					SELECT h.weight,
-						((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
-						+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
-						)::int AS months
-					FROM health_records h
-					JOIN babies b ON h.baby_id = b.id
-					WHERE h.baby_id = $1
-				),
-				per_month AS (
-					SELECT months, AVG(weight) AS month_weight
-					FROM monthly
-					GROUP BY months
-				),
-				deltas AS (
-					SELECT months,
-						month_weight - LAG(month_weight) OVER (ORDER BY months) AS gain
-					FROM per_month
-				)
-				SELECT ROUND(COALESCE(AVG(gain), 0)::numeric, 2) AS avg_monthly_gain
-				FROM deltas;`
-				, [id]
-			);
-			return result.rows[0];
-		} catch (error) {
-			throw error;
-		}
-	},
-
-	getAllAvgHeightGain: async (id) => {
+	getAllAvgGain: async (id, metric) => {
 		try {
 			const result = await pool.query(
 				`SELECT h.weight,

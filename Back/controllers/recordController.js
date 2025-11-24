@@ -45,8 +45,8 @@ const recordController = {
 
 	getBabyAvgs: async (req, res) => {
 		try {
-			const avgWeightGain = await Record.getBabyAvgWeightGain(req.params.id);
-			const avgHeightGain = await Record.getBabyAvgHeightGain(req.params.id);
+			const avgWeightGain = await Record.getBabyAvgGain(req.params.id, "weight");
+			const avgHeightGain = await Record.getBabyAvgGain(req.params.id, "height");
 			const records = await Record.getBabyRecords(req.params.id);
 			const lastRecord = records[0];
 
