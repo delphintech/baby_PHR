@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import type { ChartDataPoint } from "../../types/ChartDataPoint";
 
-export default function BabyMetricChart(props: { metric: string }) {
+export default function GeneralMetricChart(props: { metric: string }) {
 	const [refBoyData, setRefBoyData] = useState<ChartDataPoint[]>([]);;
 	const [boyData, setBoyData] = useState<ChartDataPoint[]>([]);;
 	const [refGirlData, setRefGirlData] = useState<ChartDataPoint[]>([]);;

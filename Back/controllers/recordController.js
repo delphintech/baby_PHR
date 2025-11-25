@@ -14,10 +14,10 @@ const recordController = {
 		try {
 			const data = req.body;
 			const record = await Record.createRecord(
-				data.baby_id, 
-				data.date, 
-				Number(data.weight), 
-				Number(data.height), 
+				data.baby_id,
+				data.date,
+				Number(data.weight),
+				Number(data.height),
 				data.notes)
 			res.json({ status: "ok", data: record })
 		} catch (error) {
@@ -65,17 +65,10 @@ const recordController = {
 			return res.status(500).json({ status: "error", message: "Metric must be 'F', 'M' or 'O'" });
 		}
 		try {
-			const results = {}
-			for (const gender of ['M', 'F', 'O']) {
-				const avgWeightGain = await Record.getAvgGainByGender(gender, "weight");
-				const avgHeightGain = await Record.getAvgGainByGender(gender, "height");
-				results[gender] = {
-					avgHeightGain: avgHeightGain.avg_monthly_gain,
-					avgWeightGain: avgWeightGain.avg_monthly_gain
-				}
-			}
+			const avgWeightGain = await Record.getAvgGainByGender(req.params.gender, "weight");
+			const avgHeightGain = await Record.getAvgGainByGender(req.params.gender, "height");
 
-			res.json({ status: "ok", data: results })
+			res.json({ status: "ok", data: { avgHeightGain: avgHeightGain.avg_monthly_gain, avgWeightGain: avgWeightGain.avg_monthly_gain} })
 		} catch (error) {
 			res.status(500).json({ status: "error", message: error.message })
 		}

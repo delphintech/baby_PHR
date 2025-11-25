@@ -7,6 +7,6 @@ router.post('/', recordController.createRecord);
 
 router.delete('/:id', recordController.deleteRecord);
 
-router.get('/:gender', recordController.getAvgsByGender);
+router.get('/:gender/avgs', recordController.getAvgsByGender);
 
 export default router;
