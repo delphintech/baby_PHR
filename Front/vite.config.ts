@@ -6,6 +6,19 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     port: 5173,
-    allowedHosts: ['frontend']
+    hmr: {
+      host: 'localhost',
+      port: 8443,
+      protocol: 'wss'
+    }
   }
 })
+
+// export default defineConfig({
+//   plugins: [react()],
+//   server: {
+//     host: '0.0.0.0',
+//     port: 5173,
+//     allowedHosts: ['frontend']
+//   }
+// })

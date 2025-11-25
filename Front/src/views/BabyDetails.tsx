@@ -10,7 +10,7 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	const [reload, setReload] = useState(true);
 
 	const navigate = useNavigate();
-	let params = useParams();
+	const params = useParams();
 
 	useEffect(() => {
 		if (!reload) return;
@@ -30,7 +30,7 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 			const res = await fetch(`https://localhost:8443/api/babies/${params.id}`, {
 				method: "DELETE",
 			}).then(res => res.json())
-			if (res.status = "ok") {
+			if (res.status == "ok") {
 				alert(`${baby?.name} and all the records have been deleted`);
 				props.setBaby(null);
 				navigate('/');
@@ -47,13 +47,13 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 
 			<section className="bg-white rounded-2xl shadow p-6 mb-6">
 				<h2 className="text-xl font-semibold text-blue-700 mb-4">Growth Chart (0–24 months)</h2>
-				
+
 				<div className="grid grid-cols-1 gap-6">
 				{baby && <BabyMetricChart baby={baby} metric="weight" />}
 				{baby && <BabyMetricChart baby={baby} metric="height" />}
 				</div>
 			</section>
-			
+
 			<BabyRecords baby={baby} setReload={setReload}/>
 
 			<div className="bg-white rounded-2xl shadow p-4 mb-6 flex justify-between items-center">

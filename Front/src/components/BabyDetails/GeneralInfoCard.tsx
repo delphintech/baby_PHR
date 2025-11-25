@@ -3,8 +3,19 @@ import { useNavigate } from "react-router-dom";
 import type { Baby } from "../../types/Baby";
 import { display_age } from "../../utils/dateUtils";
 
+interface Average {
+    lastRecord: {
+        height: number;
+        weight: number;
+        date: string;
+        notes?: string;
+    };
+    avgWeightGain: number;
+    avgHeightGain: number;
+}
+
 export default function GeneralInfoCard(props: {baby: Baby}) {
-	const [avgs, setAvgs] = useState<any>(null)
+	const [avgs, setAvgs] = useState<Average | null>(null)
 
 	const navigate = useNavigate();
 
