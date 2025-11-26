@@ -40,8 +40,8 @@ const Record = {
 
 	getBabyMetrics: async (id, metric) => {
 		if (!['height', 'weight'].includes(metric)) {
-            throw new Error("Metric must be 'height' or 'weight'");
-        }
+			throw new Error("Metric must be 'height' or 'weight'");
+		}
 		try {
 			const result = await pool.query(
 				`SELECT h.${metric},
@@ -61,8 +61,8 @@ const Record = {
 
 	getBabyAvgGain: async (id, metric) => {
 		if (!['height', 'weight'].includes(metric)) {
-            throw new Error("Metric must be 'height' or 'weight'");
-        }
+			throw new Error("Metric must be 'height' or 'weight'");
+		}
 		try {
 			const result = await pool.query(
 				`WITH monthly AS (
@@ -96,11 +96,11 @@ const Record = {
 
 	getAvgGainByGender: async (gender, metric) => {
 		if (!['F', 'M', 'O'].includes(gender)) {
-            throw new Error("Metric must be 'F', 'M' or 'O'");
-        }
+			throw new Error("Metric must be 'F', 'M' or 'O'");
+		}
 		if (!['height', 'weight'].includes(metric)) {
-            throw new Error("Metric must be 'height' or 'weight'");
-        }
+			throw new Error("Metric must be 'height' or 'weight'");
+		}
 		try {
 			const result = await pool.query(
 				`WITH monthly AS (
@@ -130,8 +130,67 @@ const Record = {
 		} catch (error) {
 			throw error;
 		}
-	}
+	},
 
+	getAvgMetricByGender: async (gender, metric) => {
+		if (!['F', 'M', 'O'].includes(gender)) {
+			throw new Error("Metric must be 'F', 'M' or 'O'");
+		}
+		if (!['height', 'weight'].includes(metric)) {
+			throw new Error("Metric must be 'height' or 'weight'");
+		}
+		try {
+			const result = await pool.query(
+				`WITH monthly AS (
+					SELECT h.${metric},
+						((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12 
+						+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
+						)::int AS months
+					FROM health_records h
+					JOIN babies b ON h.baby_id = b.id
+					WHERE b.gender = $1
+				)
+				SELECT months, ROUND(AVG(${metric}), 2) AS ${metric}
+				FROM monthly
+				GROUP BY months
+				ORDER BY months ASC`
+				, [gender]
+			);
+			return result.rows;
+		} catch (error) {
+			throw error;
+		}
+	}
 }
 
 export default Record;
+
+
+// getAvgGainByGender: async (gender, metric) => {
+// 	if (!['F', 'M', 'O'].includes(gender)) {
+//         throw new Error("Metric must be 'F', 'M' or 'O'");
+//     }
+// 	if (!['height', 'weight'].includes(metric)) {
+//         throw new Error("Metric must be 'height' or 'weight'");
+//     }
+// 	try {
+// 		const result = await pool.query(
+// 			`WITH monthly AS (
+// 				SELECT h.${metric},
+// 					((EXTRACT(year FROM AGE(h.date, b.birthdate)) * 12
+// 					+ EXTRACT(month FROM AGE(h.date, b.birthdate)))
+// 					)::int AS months
+// 				FROM health_records h
+// 				JOIN babies b ON h.baby_id = b.id
+// 				WHERE b.gender = $1
+// 			),
+// 			SELECT months, AVG(${metric}) AS month_metric
+// 			FROM monthly
+// 			GROUP BY months`
+// 			, [gender]
+// 		);
+// 		return result.rows[0];
+// 	} catch (error) {
+// 		throw error;
+// 	}
+// },

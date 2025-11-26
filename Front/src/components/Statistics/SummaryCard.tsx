@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { display_age } from "../../utils/dateUtils";
 
 interface Average {
-	avg_age: number;
+	// avg_age: number;
     avgWeightGain: number;
     avgHeightGain: number;
 }
@@ -34,22 +34,22 @@ export default function SummaryCard(props: {gender: string}) {
             {/* Average Stats */}
             {avgs ? (
                 <div className="space-y-4">
-                    <div className="border-t pt-4">
+                    {/* <div className="border-t pt-4">
                         <p className="text-sm text-gray-500 uppercase tracking-wide mb-2">Average Age</p>
-                        {/* <p className="text-gray-800 font-medium">{avgs.avg_age?.toFixed(1)} months</p> */}
-                    </div>
+                        <p className="text-gray-800 font-medium">{avgs.avg_age?.toFixed(1)} months</p>
+                    </div> */}
 
                     <div className="border-t pt-4 grid sm:grid-cols-2 gap-4">
                         <div>
                             <p className="text-sm text-gray-500 uppercase tracking-wide mb-1">Avg Weight Gain</p>
                             <p className="text-gray-800 font-medium">
-                                +{avgs.avgWeightGain?.toFixed(2)} kg / month
+                                +{avgs.avgWeightGain} kg / month
                             </p>
                         </div>
                         <div>
                             <p className="text-sm text-gray-500 uppercase tracking-wide mb-1">Avg Height Growth</p>
                             <p className="text-gray-800 font-medium">
-                                +{avgs.avgHeightGain?.toFixed(2)} cm / month
+                                +{avgs.avgHeightGain} cm / month
                             </p>
                         </div>
                     </div>

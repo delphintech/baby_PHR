@@ -60,15 +60,30 @@ const recordController = {
 		}
 	},
 
-	getAvgsByGender: async (req, res) => {
+	getAvgGainByGender: async (req, res) => {
 		if (!['F', 'M', 'O'].includes(req.params.gender)) {
-			return res.status(500).json({ status: "error", message: "Metric must be 'F', 'M' or 'O'" });
+			return res.status(500).json({ status: "error", message: "Gender must be 'F', 'M' or 'O'" });
 		}
 		try {
 			const avgWeightGain = await Record.getAvgGainByGender(req.params.gender, "weight");
 			const avgHeightGain = await Record.getAvgGainByGender(req.params.gender, "height");
 
 			res.json({ status: "ok", data: { avgHeightGain: avgHeightGain.avg_monthly_gain, avgWeightGain: avgWeightGain.avg_monthly_gain} })
+		} catch (error) {
+			res.status(500).json({ status: "error", message: error.message })
+		}
+	},
+
+	getMetricsByGender: async (req, res) => {
+		if (!['F', 'M', 'O'].includes(req.params.gender)) {
+			return res.status(500).json({ status: "error", message: "Gender must be 'F', 'M' or 'O'" });
+		}
+		if (!['height', 'weight'].includes(req.params.metric)) {
+			return res.status(500).json({ status: "error", message: "Metric must be 'weight' or 'height'" });
+		}
+		try {
+			const records = await Record.getAvgMetricByGender(req.params.gender, req.params.metric);
+			res.json({ status: "ok", data: records })
 		} catch (error) {
 			res.status(500).json({ status: "error", message: error.message })
 		}

@@ -8,12 +8,15 @@ export default function GeneralMetricChart(props: { metric: string }) {
 	const [refGirlData, setRefGirlData] = useState<ChartDataPoint[]>([]);;
 	const [girlData, setGirlData] = useState<ChartDataPoint[]>([]);;
 
+	const [showBoys, setShowBoys] = useState(true);
+    const [showGirls, setShowGirls] = useState(true);
+
 	useEffect(() => {
 		if (!props.metric) return;
 
 		const genders = {
-            boy: { setRef: setRefBoyData, setData: setBoyData },
-            girl: { setRef: setRefGirlData, setData: setGirlData }
+            boy: { param: "M", setRef: setRefBoyData, setData: setBoyData },
+            girl: { param: "F", setRef: setRefGirlData, setData: setGirlData }
         };
 
 		Object.entries(genders).forEach(([gender, setters]) => {
@@ -23,7 +26,7 @@ export default function GeneralMetricChart(props: { metric: string }) {
 				.catch(err => console.error("Failed to load reference data:", err));
 
 			// Load gender data
-			fetch(`https://localhost:8443/api/babies/${key}/records/${props.metric}`)
+			fetch(`https://localhost:8443/api/records/${setters.param}/${props.metric}`)
 				.then(res => res.json())
 				.then(data => setters.setData(data.data))
 				.catch(err => console.error("API error:", err));
@@ -34,17 +37,49 @@ export default function GeneralMetricChart(props: { metric: string }) {
 
 	return (
         <div className="border rounded-xl p-4">
-			<h3 className="text-sm font-semibold text-gray-700 mb-2">{title}</h3>
+			<div className="flex items-center justify-between">
+				<h3 className="text-sm font-semibold text-gray-700 mb-4">{title}</h3>
+
+				<div className="flex gap-4 mb-4">
+					<label className="flex items-center gap-2 cursor-pointer">
+						<input
+							type="checkbox"
+							checked={showBoys}
+							onChange={(e) => setShowBoys(e.target.checked)}
+							className="w-4 h-4"
+						/>
+						<span className="text-sm text-gray-700">👦 Boys</span>
+					</label>
+					<label className="flex items-center gap-2 cursor-pointer">
+						<input
+							type="checkbox"
+							checked={showGirls}
+							onChange={(e) => setShowGirls(e.target.checked)}
+							className="w-4 h-4"
+						/>
+						<span className="text-sm text-gray-700">👧 Girls</span>
+					</label>
+				</div>
+			</div>
+
 			<ComposedChart style={{ width: '100%', aspectRatio: 1.618 }} >
 				<CartesianGrid strokeDasharray="3 3" />
 				<XAxis dataKey="months" type="number" domain={[0, 24]} label={{ value: 'months', position: "insideBottomRight", offset: -5 }} allowDataOverflow/>
 				<YAxis type="number" />
 				<Legend verticalAlign="bottom" iconType="rect" />
 				<Tooltip />
-				<Line name="Baby" type="natural" data={girlData} dataKey={props.metric} stroke="#d11616ff" connectNulls />
-				<Line name="Baby" type="natural" data={boyData} dataKey={props.metric} stroke="#0e8ed3ff" connectNulls />
-				<Area name="Reference" type="monotone" data={refGirlData} dataKey={props.metric} stroke="none" fill="#8fc3e0ff" connectNulls dot={false} activeDot={false} />
-				<Area name="Reference" type="monotone" data={refBoyData} dataKey={props.metric} stroke="none" fill="#dda2a2ff" connectNulls dot={false} activeDot={false} />
+				{showGirls && 
+					<>
+						<Line name="Girl" type="natural" data={girlData} dataKey={props.metric} stroke="#d11616ff" connectNulls />
+						<Area name="Girl reference" type="monotone" data={refBoyData} dataKey={props.metric} stroke="none" fill="#dda2a2ff" connectNulls dot={false} activeDot={false} />
+					</>
+				}
+				{showBoys && 
+					<>
+						<Line name="Boy" type="natural" data={boyData} dataKey={props.metric} stroke="#0e8ed3ff" connectNulls />
+						<Area name="Boy reference" type="monotone" data={refGirlData} dataKey={props.metric} stroke="none" fill="#8fc3e0ff" connectNulls dot={false} activeDot={false} />
+					</>
+				}
 			</ComposedChart>
 		</div>
 	)

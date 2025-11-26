@@ -10,7 +10,8 @@ export default defineConfig({
       host: 'localhost',
       port: 8443,
       protocol: 'wss'
-    }
+    },
+    allowedHosts: ['frontend', 'localhost', 'localhost:5173']
   }
 })
 
