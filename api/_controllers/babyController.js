@@ -1,6 +1,6 @@
-import Baby from '../models/Baby.js';
-import Vaccine from '../models/Vaccine.js';
-import pool from '../config/db.js';
+import Baby from '../_models/Baby.js';
+import Vaccine from '../_models/Vaccine.js';
+import pool from '../_config/db.js';
 
 const babyController = {
 	getAllBaby: async (req, res) => {

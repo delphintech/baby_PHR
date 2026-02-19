@@ -1,4 +1,4 @@
-import Vaccine from "../models/Vaccine.js";
+import Vaccine from "../_models/Vaccine.js";
 
 const vaccineController = {
 	getAllVaccines: async (req, res) => {

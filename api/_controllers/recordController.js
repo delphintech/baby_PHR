@@ -1,4 +1,4 @@
-import Record from "../models/Record.js";
+import Record from "../_models/Record.js";
 
 const recordController = {
 	getBabyRecords: async (req, res) => {

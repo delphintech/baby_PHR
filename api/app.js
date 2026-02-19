@@ -4,9 +4,9 @@ import logger from 'morgan';
 import dotenv from 'dotenv';
 
 import express from 'express';
-import babyController from './controllers/babyController.js';
-import recordController from './controllers/recordController.js';
-import vaccineController from './controllers/vaccineController.js';
+import babyController from './_controllers/babyController.js';
+import recordController from './_controllers/recordController.js';
+import vaccineController from './_controllers/vaccineController.js';
 
 dotenv.config();
 const app = express();
@@ -31,11 +31,9 @@ app.use(cookieParser());
 // ========== Babies routes ==========
 
 router.get('/', babyController.getAllBaby);
-
 router.get('/:id', babyController.getBabybyId);
 
 // router.post('/', babyController.createBaby);
-
 // router.delete('/:id', babyController.deleteBaby);
 
 router.get('/:id/records', recordController.getBabyRecords);
@@ -46,16 +44,12 @@ router.get('/:id/vaccines', vaccineController.getBabyVaccine);
 
 // ========== Record routes ==========
 router.post('/', recordController.createRecord);
-
 router.delete('/:id', recordController.deleteRecord);
-
 router.get('/:gender/avgs', recordController.getAvgGainByGender);
-
 router.get('/:gender/:metric', recordController.getMetricsByGender);
 
 // ========== Vaccine routes ==========
 router.get('/', vaccineController.getAllVaccines);
-
 router.put('/:id', vaccineController.updateVaccine);
 
 // app.use(errorHandler);
