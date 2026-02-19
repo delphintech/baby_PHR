@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import type { Vaccine } from '../types/Vaccine';
 import UpdateVaccineForm from '../components/Vaccination/UpdateVaccineForm';
+import { API_URL } from '../config/api';
 
 function Vaccination() {
 	const [selectedVaccine, setSelectedVaccine] = useState<Vaccine | null>(null);
@@ -13,7 +14,7 @@ function Vaccination() {
 
 	useEffect(() => {
 		if (!reload) return;
-		fetch(`https://localhost:8443/api/babies/${params.id}/vaccines`)
+		fetch(`${API_URL}api/babies/${params.id}/vaccines`)
 			.then(res => res.json())
 			.then(data => setVaccines(data.data))
 			.catch(err => console.error(err));

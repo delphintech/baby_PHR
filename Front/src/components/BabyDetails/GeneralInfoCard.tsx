@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import type { Baby } from "../../types/Baby";
 import { display_age } from "../../utils/dateUtils";
+import { API_URL } from "../../config/api";
 
 interface Average {
     lastRecord: {
@@ -22,7 +23,7 @@ export default function GeneralInfoCard(props: {baby: Baby}) {
 	useEffect(() => {
 		if (!props.baby) return;
 
-		fetch(`https://localhost:8443/api/babies/${props.baby.id}/avgs`)
+		fetch(`${API_URL}api/babies/${props.baby.id}/avgs`)
 			.then(res => res.json())
 			.then(data => {
 				setAvgs(data.data)

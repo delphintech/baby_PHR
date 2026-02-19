@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { API_URL } from "../../config/api";
 
 interface Average {
 	// avg_age: number;
@@ -12,7 +13,7 @@ export default function SummaryCard(props: {gender: string}) {
 	useEffect(() => {
 		if (!props.gender) return;
 
-		fetch(`https://localhost:8443/api/records/${props.gender}/avgs`)
+		fetch(`${API_URL}/api/records/${props.gender}/avgs`)
 			.then(res => res.json())
 			.then(data => {
 				setAvgs(data.data)

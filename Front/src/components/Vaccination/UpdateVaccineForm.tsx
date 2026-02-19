@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Vaccine } from '../../types/Vaccine';
 import { display_age } from '../../utils/dateUtils';
+import { API_URL } from "../../config/api";
 
 export default function UpdateVaccineForm (props: { 
 	vaccine : Vaccine, 
@@ -31,7 +32,7 @@ export default function UpdateVaccineForm (props: {
 		event.preventDefault();
 
 		// TODO: Check the date is after birth
-		const res = await fetch(`https://localhost:8443/api/vaccines/${props.vaccine?.id}`, {
+		const res = await fetch(`${API_URL}/api/vaccines/${props.vaccine?.id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

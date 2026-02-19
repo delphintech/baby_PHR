@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Baby } from "../../types/Baby";
 import type { Record } from "../../types/Record";
 import NewRecordForm from "./NewRecordForm";
+import { API_URL } from "../../config/api";
 
 export default function BabyRecords (props: { baby: Baby | null, setReload: (reload: boolean) => void }) {
 	const [records, setRecords] = useState<Array<Record>>([])
@@ -11,7 +12,7 @@ export default function BabyRecords (props: { baby: Baby | null, setReload: (rel
 
 	useEffect(() => {
 		if (!props.baby) return;
-		fetch(`https://localhost:8443/api/babies/${props.baby?.id}/records`)
+		fetch(`${API_URL}/api/babies/${props.baby?.id}/records`)
 			.then(res => res.json())
 			.then(data => { 
 				setRecords(data.data) })
@@ -20,7 +21,7 @@ export default function BabyRecords (props: { baby: Baby | null, setReload: (rel
 
 	async function handleDelete(id: number) {
 		if(window.confirm(`Are you sure you want to delete this records ?`)) {
-			const res = await fetch(`https://localhost:8443/api/records/${id}`, {
+			const res = await fetch(`${API_URL}/api/records/${id}`, {
 				method: "DELETE",
 			}).then(res => res.json())
 

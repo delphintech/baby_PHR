@@ -3,6 +3,7 @@ import type { Baby } from '../types/Baby';
 import { useNavigate } from 'react-router-dom';
 import BabyCard from '../components/Home/BabyCard';
 import NewBabyForm from '../components/Home/NewBabyFrom';
+import { API_URL } from '../config/api';
 
 function Home() {
 	const [babies, setBabies] = useState<Baby[] | null>(null)
@@ -14,7 +15,7 @@ function Home() {
 	useEffect(() => {
 		if (!reload) return;
 
-		fetch('https://localhost:8443/api/babies')
+		fetch(`${API_URL}/api/babies`)
 			.then(res => res.json())
 			.then(data => setBabies(data.data))
 			.catch(err => console.error(err));

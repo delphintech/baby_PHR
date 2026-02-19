@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import type { ChartDataPoint } from "../../types/ChartDataPoint";
+import { API_URL } from "../../config/api";
 
 export default function GeneralMetricChart(props: { metric: string }) {
 	const [refBoyData, setRefBoyData] = useState<ChartDataPoint[]>([]);;
@@ -26,7 +27,7 @@ export default function GeneralMetricChart(props: { metric: string }) {
 				.catch(err => console.error("Failed to load reference data:", err));
 
 			// Load gender data
-			fetch(`https://localhost:8443/api/records/${setters.param}/${props.metric}`)
+			fetch(`${API_URL}/api/records/${setters.param}/${props.metric}`)
 				.then(res => res.json())
 				.then(data => setters.setData(data.data))
 				.catch(err => console.error("API error:", err));

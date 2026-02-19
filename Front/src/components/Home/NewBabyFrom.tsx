@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_URL } from '../../config/api';
 
 export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOpen: boolean) => void, setReload: (reload: boolean) => void}) {
 	const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOp
 	async function handleSubmit(event: React.FormEvent) {
 		event.preventDefault();
 
-		const res = await fetch("https://localhost:8443/api/babies", {
+		const res = await fetch(`${API_URL}/api/babies`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

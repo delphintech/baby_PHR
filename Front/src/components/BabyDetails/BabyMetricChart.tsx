@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ComposedChart, Line, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import type { Baby } from "../../types/Baby";
 import type { ChartDataPoint } from "../../types/ChartDataPoint";
+import { API_URL } from "../../config/api";
 
 export default function BabyMetricChart(props: { baby: Baby, metric: string}) {
 	const [refData, setRefData] = useState<ChartDataPoint[]>([]);;
@@ -16,7 +17,7 @@ export default function BabyMetricChart(props: { baby: Baby, metric: string}) {
 			.then(module => setRefData(module.default))
 			.catch(err => console.error("Failed to load reference data:", err));
 
-		fetch(`https://localhost:8443/api/babies/${props.baby.id}/records/${props.metric}`)
+		fetch(`${API_URL}/babies/${props.baby.id}/records/${props.metric}`)
 		.then(res => res.json())
 		.then(data => setBabyData(data.data))
 		.catch(err => console.error("API error:", err));

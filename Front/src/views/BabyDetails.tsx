@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import BabyRecords from '../components/BabyDetails/BabyRecords';
 import GeneralInfoCard from '../components/BabyDetails/GeneralInfoCard';
 import BabyMetricChart from '../components/BabyDetails/BabyMetricChart';
+import { API_URL } from '../config/api';
 
 function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	const [baby, setBaby] = useState<Baby | null>(null);
@@ -15,7 +16,7 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	useEffect(() => {
 		if (!reload) return;
 
-		fetch(`https://localhost:8443/api/babies/${params.id}`)
+		fetch(`${API_URL}/api/babies/${params.id}`)
 			.then(res => res.json())
 			.then(data => {
 				setBaby(data.data)
@@ -27,7 +28,7 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 
 	async function handleDelete() {
 		if(window.confirm(`Are you sure you want to delete all ${baby?.name}'s records ?`)) {
-			const res = await fetch(`https://localhost:8443/api/babies/${params.id}`, {
+			const res = await fetch(`${API_URL}/api/babies/${params.id}`, {
 				method: "DELETE",
 			}).then(res => res.json())
 			if (res.status == "ok") {
