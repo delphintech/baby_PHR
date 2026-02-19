@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "buildCommand": "cd Front && npm install && npm run build",
+  "outputDirectory": "Front/dist",
+  "devCommand": "cd Front && npm run dev",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/app.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

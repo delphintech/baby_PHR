@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { display_age } from "../../utils/dateUtils";
 
 interface Average {
 	// avg_age: number;

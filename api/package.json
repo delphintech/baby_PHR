@@ -6,12 +6,14 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "migrate": "node-pg-migrate",
+    "migrate": "node-pg-migrate up",
+    "seed": "node --loader dotenv/config ./config/seed.js",
+    "setup": "npm run migrate && npm run seed",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
-    "seed": "node ./config/seed.js"
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^17.2.3",

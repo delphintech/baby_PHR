@@ -1,4 +1,4 @@
-import pool from '../config/db.js';
+import pool from './db.js';
 import fs from 'fs';
 import { faker } from '@faker-js/faker';
 import { parse } from 'csv-parse/sync';

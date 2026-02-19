@@ -3,6 +3,8 @@
 ## Overview
 Full-stack web application built with Express (backend), React + Vite (frontend), PostgreSQL (database), and Nginx (reverse proxy).
 
+https://baby-mzvmlq7zb-delphintechs-projects.vercel.app/
+
 ## Tech Stack
 - **Backend:** Node.js + Express (REST API)
 - **Frontend:** React 19 + Vite
@@ -26,7 +28,7 @@ baby_PHR/
 - **Update .env :**
 	```
 	POSTGRES_USER=
-	POSTGRES_DB=
+	POSTGRES_DATABASE=
 	POSTGRES_PASSWORD=
 	DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@localhost:5432/$POSTGRES_USER
 	```

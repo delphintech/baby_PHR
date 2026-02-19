@@ -1,0 +1,32 @@
+{
+  "name": "baby_phr",
+  "version": "1.0.0",
+  "description": "Baby Personal Health Record with React + Vite (Front) and Express in serverless mode (Back)",
+  "homepage": "https://github.com/delphintech/baby_PHR#readme",
+  "bugs": {
+    "url": "https://github.com/delphintech/baby_PHR/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delphintech/baby_PHR.git"
+  },
+  "license": "ISC",
+  "author": "Delphintech",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "cd Front && npm run dev",
+    "dev:vercel": "vercel dev",
+    "build:front": "cd Front && npm install && npm run build",
+    "build:api": "cd api && npm install",
+    "build": "npm run build:front && npm run build:api",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.11.3"
+  }
+}
