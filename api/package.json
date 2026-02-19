@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./_bin/www",
     "dev": "nodemon ./_bin/www",
-    "migrate": "node ./_config/migrate.js",
+    "migrate": "node-pg-migrate up --migrations-dir ./_config/migration",
     "seed": "node ./_config/seed.js",
     "setup": "npm run migrate && npm run seed",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",

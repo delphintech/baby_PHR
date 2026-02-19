@@ -62,7 +62,7 @@ const seedDatabase = async () => {
 		// ---------- HEALTH RECORDS ----------
 		console.log(`Creating health records...`);
 
-		const csvFile = './config/baby_health_records.csv';
+		const csvFile = './_config/baby_health_records.csv';
 		const csvContent = fs.readFileSync(csvFile, 'utf-8');
 			const records = parse(csvContent, {
 				columns: true,
