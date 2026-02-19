@@ -29,10 +29,10 @@ app.use(cookieParser());
 
 // ========== Babies routes ==========
 
-app.get('/babies/', babyController.getAllBaby);
+app.get('/babies', babyController.getAllBaby);
 app.get('/babies/:id', babyController.getBabybyId);
 
-app.post('/babies/', babyController.createBaby);
+app.post('/babies', babyController.createBaby);
 app.delete('/babies/:id', babyController.deleteBaby);
 
 app.get('/babies/:id/records', recordController.getBabyRecords);
@@ -42,13 +42,13 @@ app.get('/babies/:id/avgs', recordController.getBabyAvgs);
 app.get('/babies/:id/vaccines', vaccineController.getBabyVaccine);
 
 // ========== Record routes ==========
-app.post('/records/', recordController.createRecord);
+app.post('/records', recordController.createRecord);
 app.delete('/records/:id', recordController.deleteRecord);
 app.get('/records/:gender/avgs', recordController.getAvgGainByGender);
 app.get('/records/:gender/:metric', recordController.getMetricsByGender);
 
 // ========== Vaccine routes ==========
-app.get('/vaccines/', vaccineController.getAllVaccines);
+app.get('/vaccines', vaccineController.getAllVaccines);
 app.put('/vaccines/:id', vaccineController.updateVaccine);
 
 // Error handling
