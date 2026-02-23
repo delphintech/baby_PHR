@@ -20,7 +20,7 @@ export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOp
 	async function handleSubmit(event: React.FormEvent) {
 		event.preventDefault();
 
-		const res = await fetch(`${API_URL}/api/babies`, {
+		const res = await fetch(`${API_URL}/babies`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

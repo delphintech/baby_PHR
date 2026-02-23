@@ -15,9 +15,9 @@ function Home() {
 	useEffect(() => {
 		if (!reload) return;
 
-		fetch(`${API_URL}/api/babies`)
+		fetch(`${API_URL}/babies`)
 			.then(res => res.json())
-			.then(data => setBabies(data.data))
+			.then(data => {console.log(data.data); setBabies(data.data)})
 			.catch(err => console.error(err));
 		setReload(false);
 	}, [reload]);

@@ -23,7 +23,7 @@ export default function GeneralInfoCard(props: {baby: Baby}) {
 	useEffect(() => {
 		if (!props.baby) return;
 
-		fetch(`${API_URL}api/babies/${props.baby.id}/avgs`)
+		fetch(`${API_URL}/babies/${props.baby.id}/avgs`)
 			.then(res => res.json())
 			.then(data => {
 				setAvgs(data.data)

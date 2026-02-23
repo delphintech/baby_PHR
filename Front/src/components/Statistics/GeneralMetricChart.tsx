@@ -27,7 +27,7 @@ export default function GeneralMetricChart(props: { metric: string }) {
 				.catch(err => console.error("Failed to load reference data:", err));
 
 			// Load gender data
-			fetch(`${API_URL}/api/records/${setters.param}/${props.metric}`)
+			fetch(`${API_URL}/records/${setters.param}/${props.metric}`)
 				.then(res => res.json())
 				.then(data => setters.setData(data.data))
 				.catch(err => console.error("API error:", err));

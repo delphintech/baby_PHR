@@ -32,7 +32,7 @@ export default function UpdateVaccineForm (props: {
 		event.preventDefault();
 
 		// TODO: Check the date is after birth
-		const res = await fetch(`${API_URL}/api/vaccines/${props.vaccine?.id}`, {
+		const res = await fetch(`${API_URL}/vaccines/${props.vaccine?.id}`, {
 			method: "PUT",
 			headers: {
 				"Content-Type": "application/json",

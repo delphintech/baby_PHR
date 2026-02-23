@@ -14,7 +14,7 @@ function Vaccination() {
 
 	useEffect(() => {
 		if (!reload) return;
-		fetch(`${API_URL}api/babies/${params.id}/vaccines`)
+		fetch(`${API_URL}/babies/${params.id}/vaccines`)
 			.then(res => res.json())
 			.then(data => setVaccines(data.data))
 			.catch(err => console.error(err));

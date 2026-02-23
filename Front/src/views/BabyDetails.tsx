@@ -16,7 +16,7 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	useEffect(() => {
 		if (!reload) return;
 
-		fetch(`${API_URL}/api/babies/${params.id}`)
+		fetch(`${API_URL}/babies/${params.id}`)
 			.then(res => res.json())
 			.then(data => {
 				setBaby(data.data)
@@ -28,7 +28,7 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 
 	async function handleDelete() {
 		if(window.confirm(`Are you sure you want to delete all ${baby?.name}'s records ?`)) {
-			const res = await fetch(`${API_URL}/api/babies/${params.id}`, {
+			const res = await fetch(`${API_URL}/babies/${params.id}`, {
 				method: "DELETE",
 			}).then(res => res.json())
 			if (res.status == "ok") {

@@ -15,7 +15,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "cd Front && npm run dev",
+    "dev:api": "cd api && npm run dev",
+    "dev:front": "cd Front && npm run dev",
+    "dev": "npm run dev:front && npm run dev:api",
     "dev:vercel": "vercel dev",
     "build:front": "cd Front && npm install && npm run build",
     "build:api": "cd api && npm install",
@@ -27,6 +29,7 @@
     "cookie-parser": "^1.4.6",
     "express": "^4.18.2",
     "morgan": "^1.10.0",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "vercel": "^50.22.1"
   }
 }

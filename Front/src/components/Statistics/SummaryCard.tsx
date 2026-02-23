@@ -13,7 +13,7 @@ export default function SummaryCard(props: {gender: string}) {
 	useEffect(() => {
 		if (!props.gender) return;
 
-		fetch(`${API_URL}/api/records/${props.gender}/avgs`)
+		fetch(`${API_URL}/records/${props.gender}/avgs`)
 			.then(res => res.json())
 			.then(data => {
 				setAvgs(data.data)
