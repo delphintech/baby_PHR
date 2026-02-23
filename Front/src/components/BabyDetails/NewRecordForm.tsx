@@ -24,20 +24,23 @@ export default function NewRecordForm (props: { baby: Baby, isOpen: boolean, set
 		if (new Date(formData.date) < new Date( props.baby.birthdate)) {
 			return alert(`Error: The record should not be set before birth.`);
 		}
-		const res = await fetch(`${API_URL}/records`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ ...formData, baby_id: props.baby?.id })
-		}).then(res => res.json())
+		// DEV
+		alert("Creation and deletion have been deactivated for deployment purposes.");
+		props.setOpenForm(false);
+		// const res = await fetch(`${API_URL}/records`, {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify({ ...formData, baby_id: props.baby?.id })
+		// }).then(res => res.json())
 
-		if (res.status == "ok") {
-			props.setOpenForm(false);
-			props.setReload(true);
-		} else {
-			alert(`Error: ${res.message}`);
-		}
+		// if (res.status == "ok") {
+		// 	props.setOpenForm(false);
+		// 	props.setReload(true);
+		// } else {
+		// 	alert(`Error: ${res.message}`);
+		// }
 	}
 
 	return (

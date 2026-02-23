@@ -3,8 +3,6 @@ import SummaryCard from '../components/Statistics/SummaryCard';
 
 function Statistics() {
 
-	// TODO: Chart API
-
 	return (
         <section className="p-4">
             {/* Summary Cards */}

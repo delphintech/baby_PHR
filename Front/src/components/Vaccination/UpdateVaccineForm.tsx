@@ -31,7 +31,6 @@ export default function UpdateVaccineForm (props: {
 	async function handleSubmit(event: React.FormEvent) {
 		event.preventDefault();
 
-		// TODO: Check the date is after birth
 		const res = await fetch(`${API_URL}/vaccines/${props.vaccine?.id}`, {
 			method: "PUT",
 			headers: {

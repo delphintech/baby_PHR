@@ -27,18 +27,20 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	}, [reload]);
 
 	async function handleDelete() {
-		if(window.confirm(`Are you sure you want to delete all ${baby?.name}'s records ?`)) {
-			const res = await fetch(`${API_URL}/babies/${params.id}`, {
-				method: "DELETE",
-			}).then(res => res.json())
-			if (res.status == "ok") {
-				alert(`${baby?.name} and all the records have been deleted`);
-				props.setBaby(null);
-				navigate('/');
-			} else {
-				alert(`Error: ${res.message}`)
-			}
-		}
+		// DEV
+		alert("Creation and deletion have been deactivated for deployment purposes.");
+		// if(window.confirm(`Are you sure you want to delete all ${baby?.name}'s records ?`)) {
+		// 	const res = await fetch(`${API_URL}/babies/${params.id}`, {
+		// 		method: "DELETE",
+		// 	}).then(res => res.json())
+		// 	if (res.status == "ok") {
+		// 		alert(`${baby?.name} and all the records have been deleted`);
+		// 		props.setBaby(null);
+		// 		navigate('/');
+		// 	} else {
+		// 		alert(`Error: ${res.message}`)
+		// 	}
+		// }
 	}
 
 	return (

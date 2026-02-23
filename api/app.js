@@ -32,8 +32,8 @@ app.use(cookieParser());
 app.get('/api/babies', babyController.getAllBaby);
 app.get('/api/babies/:id', babyController.getBabybyId);
 
-app.post('/api/babies', babyController.createBaby);
-app.delete('/api/babies/:id', babyController.deleteBaby);
+// app.post('/api/babies', babyController.createBaby); // DEV
+// app.delete('/api/babies/:id', babyController.deleteBaby); // DEV
 
 app.get('/api/babies/:id/records', recordController.getBabyRecords);
 app.get('/api/babies/:id/records/:metric', recordController.getBabyMetrics);
@@ -42,8 +42,8 @@ app.get('/api/babies/:id/avgs', recordController.getBabyAvgs);
 app.get('/api/babies/:id/vaccines', vaccineController.getBabyVaccine);
 
 // ========== Record routes ==========
-app.post('/api/records', recordController.createRecord);
-app.delete('/api/records/:id', recordController.deleteRecord);
+// app.post('/api/records', recordController.createRecord); // DEV
+// app.delete('/api/records/:id', recordController.deleteRecord); // DEV
 app.get('/api/records/:gender/avgs', recordController.getAvgGainByGender);
 app.get('/api/records/:gender/:metric', recordController.getMetricsByGender);
 

@@ -19,22 +19,25 @@ export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOp
 
 	async function handleSubmit(event: React.FormEvent) {
 		event.preventDefault();
+		// DEV
+		alert("Creation and deletion have been deactivated for deployment purposes.");
+		props.setOpenForm(false);
 
-		const res = await fetch(`${API_URL}/babies`, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(formData)
-		}).then(res => res.json());
+		// const res = await fetch(`${API_URL}/babies`, {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify(formData)
+		// }).then(res => res.json());
 
-		if (res.status == "ok") {
-			alert(`${res.data.name} has been created`);
-			props.setOpenForm(false);
-			props.setReload(true);
-		} else {
-			alert(`Error: ${res.message}`);
-		}
+		// if (res.status == "ok") {
+		// 	alert(`${res.data.name} has been created`);
+		// 	props.setOpenForm(false);
+		// 	props.setReload(true);
+		// } else {
+		// 	alert(`Error: ${res.message}`);
+		// }
 	}
 
 	return (

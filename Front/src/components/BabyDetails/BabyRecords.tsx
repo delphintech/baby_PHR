@@ -20,17 +20,19 @@ export default function BabyRecords (props: { baby: Baby | null, setReload: (rel
 	}, [props.baby])
 
 	async function handleDelete(id: number) {
-		if(window.confirm(`Are you sure you want to delete this records ?`)) {
-			const res = await fetch(`${API_URL}/records/${id}`, {
-				method: "DELETE",
-			}).then(res => res.json())
+		// DEV
+		alert("Creation and deletion have been deactivated for deployment purposes.");
+		// if(window.confirm(`Are you sure you want to delete this records ?`)) {
+		// 	const res = await fetch(`${API_URL}/records/${id}`, {
+		// 		method: "DELETE",
+		// 	}).then(res => res.json())
 
-			if (res.status != "ok") {
-				alert(`Error: ${res.message}`)
-			} else {
-				props.setReload(true)
-			}
-		}
+		// 	if (res.status != "ok") {
+		// 		alert(`Error: ${res.message}`)
+		// 	} else {
+		// 		props.setReload(true)
+		// 	}
+		// }
 	}
 
 	return (
