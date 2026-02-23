@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import type { Baby } from '../types/Baby'
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import BabyRecords from '../components/BabyDetails/BabyRecords';
 import GeneralInfoCard from '../components/BabyDetails/GeneralInfoCard';
 import BabyMetricChart from '../components/BabyDetails/BabyMetricChart';
@@ -10,7 +10,7 @@ function BabyDetails(props: { setBaby: (baby: Baby | null) => void}) {
 	const [baby, setBaby] = useState<Baby | null>(null);
 	const [reload, setReload] = useState(true);
 
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
 	const params = useParams();
 
 	useEffect(() => {

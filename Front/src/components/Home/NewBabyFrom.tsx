@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { API_URL } from '../../config/api';
+// import { API_URL } from '../../config/api';
 
 export default function NewBabyForm (props: {isOpen: boolean, setOpenForm: (isOpen: boolean) => void, setReload: (reload: boolean) => void}) {
-	const [formData, setFormData] = useState({
+	const [_formData, setFormData] = useState({
 		name: "",
 		gender: "",
 		birthdate: ""

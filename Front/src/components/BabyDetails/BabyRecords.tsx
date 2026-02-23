@@ -19,7 +19,7 @@ export default function BabyRecords (props: { baby: Baby | null, setReload: (rel
 		.catch(err => console.error(err));
 	}, [props.baby])
 
-	async function handleDelete(id: number) {
+	async function handleDelete(_id: number) {
 		// DEV
 		alert("Creation and deletion have been deactivated for deployment purposes.");
 		// if(window.confirm(`Are you sure you want to delete this records ?`)) {

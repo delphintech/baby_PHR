@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Baby } from '../../types/Baby';
-import { API_URL } from "../../config/api";
+// import { API_URL } from "../../config/api";
 
 export default function NewRecordForm (props: { baby: Baby, isOpen: boolean, setOpenForm: (isOpen: boolean) => void, setReload: (reload: boolean) => void}) {
 	const [formData, setFormData] = useState({
