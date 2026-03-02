@@ -31,7 +31,7 @@ function Home() {
 				</p>
 				<button className="mt-4 bg-blue-600 hover:bg-blue-400 text-white px-4 py-2 rounded-lg block mx-auto" onClick={() => navigate('/statistics')}>Global statistics</button>
 			</section>
-			<section className="p-4 bg-white shadow flex justify-between items-center rounded-2xl p-6 mt-4">
+			<section className="bg-white shadow flex justify-between items-center rounded-2xl p-6 mt-4">
 				<h1 className="text-2xl font-bold text-blue-700">My Babies</h1>
 				<button className="bg-blue-600 hover:bg-blue-400 text-white px-4 py-2 rounded-lg" onClick={() => setOpenForm(!openForm)}>+ Add Baby</button>
 			</section>
